@@ -29,6 +29,43 @@
                 </el-input>
               </div>
             </div>
+
+            <!-- 直接添加好友 -->
+            <div class="card add-friend-section">
+              <div class="add-friend-header">
+                <h3>直接添加好友</h3>
+                <p>如果您知道对方的用户ID，可以直接发送好友请求</p>
+              </div>
+              <el-form 
+                ref="addFriendFormRef" 
+                :model="addFriendForm" 
+                :rules="addFriendRules"
+                @submit.prevent="handleAddFriend"
+              >
+                <el-form-item prop="targetUserId">
+                  <el-input
+                    v-model="addFriendForm.targetUserId"
+                    placeholder="请输入用户ID"
+                    size="large"
+                    clearable
+                    @keyup.enter="handleAddFriend"
+                  >
+                    <template #prefix>
+                      <el-icon><User /></el-icon>
+                    </template>
+                    <template #append>
+                      <el-button 
+                        type="primary" 
+                        :loading="sendingRequest"
+                        @click="handleAddFriend"
+                      >
+                        发送请求
+                      </el-button>
+                    </template>
+                  </el-input>
+                </el-form-item>
+              </el-form>
+            </div>
             
             <!-- 标签切换 -->
             <div class="card">
@@ -250,90 +287,317 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import AppHeader from '@/components/Layout/AppHeader.vue'
+import { friendAPI } from '@/api/friend'
 
 const activeTab = ref('search')
 const searchKeyword = ref('')
 const showRequestDialog = ref(false)
 const currentRequestUser = ref(null)
+const sendingRequest = ref(false)
+const addFriendFormRef = ref()
 
 const searchResults = ref([])
 const friendRequests = ref([])
 const myFriends = ref([])
 const recommendFriends = ref([])
 
+// 直接添加好友表单
+const addFriendForm = reactive({
+  targetUserId: ''
+})
+
+// 表单验证规则
+const addFriendRules = {
+  targetUserId: [
+    { required: true, message: '请输入用户ID', trigger: 'blur' },
+    { pattern: /^\d+$/, message: '用户ID必须是数字', trigger: 'blur' }
+  ]
+}
+
 const requestForm = reactive({
   reason: '',
   remark: ''
 })
 
-// 模拟数据
-const mockSearchResults = [
-  {
-    id: 1,
-    nickname: '学霸小王',
-    avatar: '',
-    school: '工业大学',
-    major: '计算机科学与技术',
-    biography: '热爱编程，喜欢分享技术心得',
-    isOnline: true,
-    friendStatus: 0 // 0-未添加 1-已发送申请 2-已是好友
-  },
-  {
-    id: 2,
-    nickname: '文艺青年',
-    avatar: '',
-    school: '工业大学',
-    major: '汉语言文学',
-    biography: '文字工作者，热爱阅读和写作',
-    isOnline: false,
-    friendStatus: 0
-  }
-]
+// 直接发送好友请求
+const handleAddFriend = async () => {
+  if (!addFriendFormRef.value) return
+  
+  await addFriendFormRef.value.validate(async (valid) => {
+    if (valid) {
+      sendingRequest.value = true
+      
+      try {
+        // 调用发送好友请求API，注意参数名称变更为friendId
+        const response = await friendAPI.sendFriendRequest(parseInt(addFriendForm.targetUserId))
+        
+        // 检查响应状态
+        if (response.data.code === 200) {
+          // 发送成功
+          ElMessage.success('请求已发送')
+          addFriendForm.targetUserId = '' // 清空输入框
+        } else {
+          // 发送失败
+          ElMessage.error(response.data.message || '发送失败')
+        }
+      } catch (error) {
+        // 处理网络错误或其他异常
+        console.error('发送好友请求错误:', error)
+        const errorMessage = error.response?.data?.message || '发送失败，请检查网络连接'
+        ElMessage.error(errorMessage)
+      } finally {
+        sendingRequest.value = false
+      }
+    }
+  })
+}
 
-const mockFriendRequests = [
-  {
-    id: 1,
-    user: {
-      id: 3,
-      nickname: '运动达人',
-      avatar: ''
-    },
-    reason: '我们是同班同学，希望能成为好友',
-    createTime: new Date(Date.now() - 2 * 60 * 60 * 1000)
-  },
-  {
-    id: 2,
-    user: {
-      id: 4,
-      nickname: '摄影爱好者',
-      avatar: ''
-    },
-    reason: '看到你的摄影作品很棒，想和你交流学习',
-    createTime: new Date(Date.now() - 6 * 60 * 60 * 1000)
+// 定义加载数据的方法
+const loadMyFriends = async () => {
+  try {
+    const response = await friendAPI.getFriendList({
+      page: 1,
+      size: 20,
+      keyword: ''
+    })
+    
+    if (response.data.code === 200) {
+      myFriends.value = response.data.data.records || []
+    } else {
+      ElMessage.warning('获取好友列表失败')
+    }
+  } catch (error) {
+    console.error('获取好友列表错误:', error)
+    ElMessage.error('获取好友列表失败，请检查网络连接')
   }
-]
+}
 
-const mockMyFriends = [
-  {
-    id: 5,
-    nickname: '室友小李',
-    avatar: '',
-    school: '工业大学',
-    major: '软件工程',
-    isOnline: true,
-    lastLoginTime: new Date()
-  },
-  {
-    id: 6,
-    nickname: '同桌小张',
-    avatar: '',
-    school: '工业大学',
-    major: '计算机科学与技术',
-    isOnline: false,
-    lastLoginTime: new Date(Date.now() - 30 * 60 * 1000)
+const loadFriendRequests = async () => {
+  try {
+    const response = await friendAPI.getFriendRequests({
+      page: 1,
+      size: 10
+    })
+    
+    if (response.data.code === 200) {
+      friendRequests.value = response.data.data.records || []
+    } else {
+      ElMessage.warning('获取好友申请失败')
+    }
+  } catch (error) {
+    console.error('获取好友申请错误:', error)
+    ElMessage.error('获取好友申请失败，请检查网络连接')
   }
-]
+}
 
+const loadSearchResults = async () => {
+  if (!searchKeyword.value.trim()) {
+    ElMessage.warning('请输入搜索关键词')
+    return
+  }
+  
+  try {
+    const response = await friendAPI.searchUsers(searchKeyword.value)
+    
+    if (response.data.code === 200) {
+      searchResults.value = response.data.data || []
+      activeTab.value = 'search'
+      ElMessage.success(`找到 ${searchResults.value.length} 个用户`)
+    } else {
+      ElMessage.warning(response.data.message || '搜索用户失败')
+    }
+  } catch (error) {
+    console.error('搜索用户错误:', error)
+    ElMessage.error('搜索用户失败，请检查网络连接')
+  }
+}
+
+// 替换handleSearch方法
+const handleSearch = () => {
+  loadSearchResults()
+}
+
+// 替换handleTabChange方法
+const handleTabChange = (tab) => {
+  if (tab === 'requests') {
+    // 加载好友申请
+    loadFriendRequests()
+  } else if (tab === 'friends') {
+    // 加载好友列表
+    loadMyFriends()
+  }
+}
+
+const onlineFriendsCount = computed(() => {
+  return myFriends.value.filter(friend => friend.isOnline).length
+})
+
+const sendFriendRequest = (user) => {
+  currentRequestUser.value = user
+  requestForm.reason = ''
+  requestForm.remark = user.nickname
+  showRequestDialog.value = true
+}
+
+const confirmSendRequest = async () => {
+  try {
+    // 使用API发送好友请求，传递完整参数
+    const response = await friendAPI.sendFriendRequest(
+      currentRequestUser.value.id,
+      requestForm.reason,
+      requestForm.remark
+    )
+    
+    // 检查响应状态
+    if (response.data.code === 200) {
+      showRequestDialog.value = false
+      ElMessage.success('好友申请已发送')
+      
+      // 更新用户状态
+      if (currentRequestUser.value) {
+        currentRequestUser.value.friendStatus = 1
+      }
+    } else {
+      ElMessage.error(response.data.message || '发送失败')
+    }
+  } catch (error) {
+    console.error('发送好友请求错误:', error)
+    const errorMessage = error.response?.data?.message || '发送失败，请检查网络连接'
+    ElMessage.error(errorMessage)
+  }
+}
+
+const acceptRequest = (request) => {
+  ElMessageBox.confirm(
+    `确定要同意 ${request.user.nickname} 的好友申请吗？`,
+    '确认操作',
+    {
+      confirmButtonText: '同意',
+      cancelButtonText: '取消',
+      type: 'info'
+    }
+  ).then(async () => {
+    try {
+      // 调用同意好友请求API
+      const response = await friendAPI.acceptFriendRequest(request.id)
+      
+      // 检查响应状态
+      if (response.data.code === 200) {
+        // 从申请列表中移除
+        const index = friendRequests.value.findIndex(r => r.id === request.id)
+        if (index > -1) {
+          friendRequests.value.splice(index, 1)
+        }
+        
+        // 重新加载好友列表
+        loadMyFriends()
+        
+        ElMessage.success('已同意好友申请')
+      } else {
+        ElMessage.error(response.data.message || '处理失败')
+      }
+    } catch (error) {
+      console.error('同意好友申请错误:', error)
+      const errorMessage = error.response?.data?.message || '操作失败，请检查网络连接'
+      ElMessage.error(errorMessage)
+    }
+  })
+}
+
+const rejectRequest = (request) => {
+  ElMessageBox.confirm(
+    `确定要拒绝 ${request.user.nickname} 的好友申请吗？`,
+    '确认操作',
+    {
+      confirmButtonText: '拒绝',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }
+  ).then(async () => {
+    try {
+      // 调用拒绝好友请求API
+      const response = await friendAPI.rejectFriendRequest(request.id)
+      
+      // 检查响应状态
+      if (response.data.code === 200) {
+        // 从申请列表中移除
+        const index = friendRequests.value.findIndex(r => r.id === request.id)
+        if (index > -1) {
+          friendRequests.value.splice(index, 1)
+        }
+        
+        ElMessage.success('已拒绝好友申请')
+      } else {
+        ElMessage.error(response.data.message || '处理失败')
+      }
+    } catch (error) {
+      console.error('拒绝好友申请错误:', error)
+      const errorMessage = error.response?.data?.message || '操作失败，请检查网络连接'
+      ElMessage.error(errorMessage)
+    }
+  })
+}
+
+// 替换handleFriendCommand方法中的删除好友逻辑
+const handleFriendCommand = (command) => {
+  const [action, friendId] = command.split('-')
+  
+  switch (action) {
+    case 'chat':
+      ElMessage.info('聊天功能开发中...')
+      break
+    case 'profile':
+      ElMessage.info('查看资料功能开发中...')
+      break
+    case 'delete':
+      ElMessageBox.confirm(
+        '确定要删除这个好友吗？',
+        '确认删除',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).then(async () => {
+        try {
+          // 调用删除好友API
+          const response = await friendAPI.deleteFriend(friendId)
+          
+          if (response.data.code === 200) {
+            // 从列表中移除
+            const index = myFriends.value.findIndex(f => f.id === parseInt(friendId))
+            if (index > -1) {
+              myFriends.value.splice(index, 1)
+            }
+            ElMessage.success('已删除好友')
+          } else {
+            ElMessage.error(response.data.message || '删除失败')
+          }
+        } catch (error) {
+          console.error('删除好友错误:', error)
+          ElMessage.error('删除失败，请检查网络连接')
+        }
+      })
+      break
+  }
+}
+
+const formatTime = (time) => {
+  const now = new Date()
+  const diff = now - time
+  const minutes = Math.floor(diff / (1000 * 60))
+  const hours = Math.floor(diff / (1000 * 60 * 60))
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  
+  if (minutes < 1) return '刚刚'
+  if (minutes < 60) return `${minutes}分钟前`
+  if (hours < 24) return `${hours}小时前`
+  if (days < 7) return `${days}天前`
+  
+  return time.toLocaleDateString()
+}
+
+// 推荐好友的模拟数据
 const mockRecommendFriends = [
   {
     id: 7,
@@ -355,147 +619,12 @@ const mockRecommendFriends = [
   }
 ]
 
-const onlineFriendsCount = computed(() => {
-  return myFriends.value.filter(friend => friend.isOnline).length
-})
-
-const handleSearch = () => {
-  if (!searchKeyword.value.trim()) {
-    ElMessage.warning('请输入搜索关键词')
-    return
-  }
-  
-  // 模拟搜索
-  searchResults.value = mockSearchResults
-  activeTab.value = 'search'
-  ElMessage.success(`找到 ${searchResults.value.length} 个用户`)
-}
-
-const handleTabChange = (tab) => {
-  if (tab === 'requests') {
-    // 加载好友申请
-    friendRequests.value = mockFriendRequests
-  } else if (tab === 'friends') {
-    // 加载好友列表
-    myFriends.value = mockMyFriends
-  }
-}
-
-const sendFriendRequest = (user) => {
-  currentRequestUser.value = user
-  requestForm.reason = ''
-  requestForm.remark = user.nickname
-  showRequestDialog.value = true
-}
-
-const confirmSendRequest = () => {
-  // 模拟发送请求
-  setTimeout(() => {
-    showRequestDialog.value = false
-    ElMessage.success('好友申请已发送')
-    
-    // 更新用户状态
-    if (currentRequestUser.value) {
-      currentRequestUser.value.friendStatus = 1
-    }
-  }, 500)
-}
-
-const acceptRequest = (request) => {
-  ElMessageBox.confirm(
-    `确定要同意 ${request.user.nickname} 的好友申请吗？`,
-    '确认操作',
-    {
-      confirmButtonText: '同意',
-      cancelButtonText: '取消',
-      type: 'info'
-    }
-  ).then(() => {
-    // 模拟同意申请
-    const index = friendRequests.value.findIndex(r => r.id === request.id)
-    if (index > -1) {
-      friendRequests.value.splice(index, 1)
-    }
-    
-    // 添加到好友列表
-    myFriends.value.push({
-      ...request.user,
-      school: '工业大学',
-      major: '未知专业',
-      isOnline: false,
-      lastLoginTime: new Date()
-    })
-    
-    ElMessage.success('已同意好友申请')
-  })
-}
-
-const rejectRequest = (request) => {
-  ElMessageBox.confirm(
-    `确定要拒绝 ${request.user.nickname} 的好友申请吗？`,
-    '确认操作',
-    {
-      confirmButtonText: '拒绝',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }
-  ).then(() => {
-    // 模拟拒绝申请
-    const index = friendRequests.value.findIndex(r => r.id === request.id)
-    if (index > -1) {
-      friendRequests.value.splice(index, 1)
-    }
-    ElMessage.success('已拒绝好友申请')
-  })
-}
-
-const handleFriendCommand = (command) => {
-  const [action, friendId] = command.split('-')
-  
-  switch (action) {
-    case 'chat':
-      ElMessage.info('聊天功能开发中...')
-      break
-    case 'profile':
-      ElMessage.info('查看资料功能开发中...')
-      break
-    case 'delete':
-      ElMessageBox.confirm(
-        '确定要删除这个好友吗？',
-        '确认删除',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).then(() => {
-        const index = myFriends.value.findIndex(f => f.id === parseInt(friendId))
-        if (index > -1) {
-          myFriends.value.splice(index, 1)
-        }
-        ElMessage.success('已删除好友')
-      })
-      break
-  }
-}
-
-const formatTime = (time) => {
-  const now = new Date()
-  const diff = now - time
-  const minutes = Math.floor(diff / (1000 * 60))
-  const hours = Math.floor(diff / (1000 * 60 * 60))
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-  
-  if (minutes < 1) return '刚刚'
-  if (minutes < 60) return `${minutes}分钟前`
-  if (hours < 24) return `${hours}小时前`
-  if (days < 7) return `${days}天前`
-  
-  return time.toLocaleDateString()
-}
-
 onMounted(() => {
-  // 初始化推荐好友
+  // 加载好友列表和申请列表
+  loadMyFriends()
+  loadFriendRequests()
+  
+  // 暂时使用模拟推荐好友数据
   recommendFriends.value = mockRecommendFriends
 })
 </script>
@@ -528,6 +657,27 @@ onMounted(() => {
       color: var(--text-primary);
       font-size: 20px;
       font-weight: 600;
+    }
+  }
+}
+
+.add-friend-section {
+  margin-bottom: 20px;
+  
+  .add-friend-header {
+    margin-bottom: 16px;
+    
+    h3 {
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin: 0;
     }
   }
 }

@@ -61,6 +61,8 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { authAPI } from '@/api/auth'
+import { setToken, setUserInfo } from '@/utils/auth'
 
 const router = useRouter()
 const loading = ref(false)
@@ -78,30 +80,51 @@ const loginRules = {
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, message: '密码长度不能少于6位', trigger: 'blur' }
+    { 
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$/,
+      message: '密码必须包含大小写字母和数字，长度8-20位', 
+      trigger: 'blur' 
+    }
   ]
 }
 
 const handleLogin = async () => {
   if (!loginFormRef.value) return
   
-  await loginFormRef.value.validate((valid) => {
+  await loginFormRef.value.validate(async (valid) => {
     if (valid) {
       loading.value = true
       
-      // 模拟登录请求
-      setTimeout(() => {
-        loading.value = false
-        localStorage.setItem('token', 'mock-token')
-        localStorage.setItem('user', JSON.stringify({
-          id: 1,
+      try {
+        // 调用登录API
+        const response = await authAPI.login({
           username: loginForm.username,
-          nickname: '工大学子'
-        }))
+          password: loginForm.password
+        })
         
-        ElMessage.success('登录成功')
-        router.push('/home')
-      }, 1000)
+        // 检查响应状态
+        if (response.data.code === 200) {
+          // 登录成功
+          const data = response.data.data
+          
+          // 存储token和用户信息
+          setToken(data.token)
+          setUserInfo(data.userInfo)
+          
+          ElMessage.success('登录成功')
+          router.push('/home')
+        } else {
+          // 登录失败
+          ElMessage.error(response.data.message || '登录失败')
+        }
+      } catch (error) {
+        // 处理网络错误或其他异常
+        console.error('登录错误:', error)
+        const errorMessage = error.response?.data?.message || '登录失败，请检查网络连接'
+        ElMessage.error(errorMessage)
+      } finally {
+        loading.value = false
+      }
     }
   })
 }

@@ -31,7 +31,7 @@ public class PostCollectController {
             Long userId = JwtUtil.getUserIdFromRequest(request);
             Boolean result = postCollectService.collectPost(postId, userId);
             if (result) {
-                return Result.success(true, "收藏成功");
+                return Result.success("收藏成功", true);
             } else {
                 return Result.error("您已经收藏过了");
             }
@@ -50,7 +50,7 @@ public class PostCollectController {
             Long userId = JwtUtil.getUserIdFromRequest(request);
             Boolean result = postCollectService.uncollectPost(postId, userId);
             if (result) {
-                return Result.success(true, "取消收藏成功");
+                return Result.success("取消收藏成功", true);
             } else {
                 return Result.error("您还未收藏过");
             }

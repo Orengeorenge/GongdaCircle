@@ -49,7 +49,7 @@ public class JwtUtil {
                 .claim("username", username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
     
@@ -161,6 +161,16 @@ public class JwtUtil {
      * @return 签名密钥
      */
     private SecretKey getSigningKey() {
+        // 确保密钥长度足够
+        if (secret.length() < 32) {
+            log.warn("JWT密钥长度不足，建议在配置中提供至少32个字符的密钥");
+            // 使用填充技术扩展密钥到足够长度
+            StringBuilder paddedSecret = new StringBuilder(secret);
+            while (paddedSecret.length() < 32) {
+                paddedSecret.append(secret);
+            }
+            return Keys.hmacShaKeyFor(paddedSecret.substring(0, 32).getBytes());
+        }
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 } 

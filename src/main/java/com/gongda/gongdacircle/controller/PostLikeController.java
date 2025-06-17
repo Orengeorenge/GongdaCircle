@@ -48,7 +48,7 @@ public class PostLikeController {
             Long userId = JwtUtil.getUserIdFromRequest(request);
             Boolean result = postLikeService.unlikePost(postId, userId);
             if (result) {
-                return Result.success(true, "取消点赞成功");
+                return Result.success("取消点赞成功", true);
             } else {
                 return Result.error("您还未点赞过");
             }

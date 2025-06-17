@@ -90,6 +90,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import { authAPI } from '@/api/auth'
 
 const router = useRouter()
 const loading = ref(false)
@@ -104,6 +105,60 @@ const registerForm = reactive({
   agreement: false
 })
 
+const validateUsername = (rule, value, callback) => {
+  if (!value) {
+    callback(new Error('请输入用户名'))
+    return
+  }
+  
+  // 检查用户名格式
+  if (!/^[a-zA-Z0-9_]{3,20}$/.test(value)) {
+    callback(new Error('用户名只能包含字母、数字、下划线，长度3-20位'))
+    return
+  }
+  
+  // 异步检查用户名是否已存在
+  authAPI.checkUsername(value)
+    .then(response => {
+      if (response.data.code === 200 && response.data.data === true) {
+        callback(new Error('该用户名已被使用'))
+      } else {
+        callback()
+      }
+    })
+    .catch(() => {
+      // 如果API调用失败，允许用户继续注册
+      callback()
+    })
+}
+
+const validateEmail = (rule, value, callback) => {
+  if (!value) {
+    callback(new Error('请输入邮箱'))
+    return
+  }
+  
+  // 检查邮箱格式
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    callback(new Error('请输入正确的邮箱格式'))
+    return
+  }
+  
+  // 异步检查邮箱是否已存在
+  authAPI.checkEmail(value)
+    .then(response => {
+      if (response.data.code === 200 && response.data.data === true) {
+        callback(new Error('该邮箱已被使用'))
+      } else {
+        callback()
+      }
+    })
+    .catch(() => {
+      // 如果API调用失败，允许用户继续注册
+      callback()
+    })
+}
+
 const validateConfirmPassword = (rule, value, callback) => {
   if (value !== registerForm.password) {
     callback(new Error('两次输入的密码不一致'))
@@ -115,7 +170,7 @@ const validateConfirmPassword = (rule, value, callback) => {
 const registerRules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 20, message: '用户名长度在 3 到 20 个字符', trigger: 'blur' }
+    { validator: validateUsername, trigger: 'blur' }
   ],
   nickname: [
     { required: true, message: '请输入昵称', trigger: 'blur' },
@@ -123,11 +178,15 @@ const registerRules = {
   ],
   email: [
     { required: true, message: '请输入邮箱', trigger: 'blur' },
-    { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
+    { validator: validateEmail, trigger: 'blur' }
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' }
+    { 
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$/,
+      message: '密码必须包含大小写字母和数字，长度8-20位', 
+      trigger: 'blur' 
+    }
   ],
   confirmPassword: [
     { required: true, message: '请确认密码', trigger: 'blur' },
@@ -141,16 +200,39 @@ const registerRules = {
 const handleRegister = async () => {
   if (!registerFormRef.value) return
   
-  await registerFormRef.value.validate((valid) => {
+  await registerFormRef.value.validate(async (valid) => {
     if (valid) {
       loading.value = true
       
-      // 模拟注册请求
-      setTimeout(() => {
+      try {
+        // 调用注册API，传递完整的用户信息
+        const response = await authAPI.register({
+          username: registerForm.username,
+          password: registerForm.password,
+          nickname: registerForm.nickname,
+          email: registerForm.email,
+          gender: 2, // 默认保密
+          school: '工业大学', // 可选默认值
+          phone: '' // 可选，传空字符串
+        })
+        
+        // 检查响应状态
+        if (response.data.code === 200) {
+          // 注册成功
+          ElMessage.success('注册成功，请登录')
+          router.push('/login')
+        } else {
+          // 注册失败
+          ElMessage.error(response.data.message || '注册失败')
+        }
+      } catch (error) {
+        // 处理网络错误或其他异常
+        console.error('注册错误:', error)
+        const errorMessage = error.response?.data?.message || '注册失败，请检查网络连接'
+        ElMessage.error(errorMessage)
+      } finally {
         loading.value = false
-        ElMessage.success('注册成功，请登录')
-        router.push('/login')
-      }, 1000)
+      }
     }
   })
 }

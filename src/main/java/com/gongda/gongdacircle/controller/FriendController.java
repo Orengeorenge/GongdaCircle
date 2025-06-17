@@ -37,7 +37,11 @@ public class FriendController {
             }
             
             boolean result = friendService.applyFriend(friendDTO, userId);
-            return result ? Result.success("好友申请已发送") : Result.error("申请失败");
+            if (result) {
+                return Result.success("好友申请已发送");
+            } else {
+                return Result.error("申请失败");
+            }
         } catch (Exception e) {
             log.error("申请添加好友异常：", e);
             return Result.error(e.getMessage());
@@ -56,7 +60,11 @@ public class FriendController {
             }
             
             boolean result = friendService.approveFriendRequest(friendshipId, userId);
-            return result ? Result.success("已同意好友申请") : Result.error("处理失败");
+            if (result) {
+                return Result.success("已同意好友申请");
+            } else {
+                return Result.error("处理失败");
+            }
         } catch (Exception e) {
             log.error("同意好友申请异常：", e);
             return Result.error(e.getMessage());
@@ -75,7 +83,11 @@ public class FriendController {
             }
             
             boolean result = friendService.rejectFriendRequest(friendshipId, userId);
-            return result ? Result.success("已拒绝好友申请") : Result.error("处理失败");
+            if (result) {
+                return Result.success("已拒绝好友申请");
+            } else {
+                return Result.error("处理失败");
+            }
         } catch (Exception e) {
             log.error("拒绝好友申请异常：", e);
             return Result.error(e.getMessage());
@@ -94,7 +106,11 @@ public class FriendController {
             }
             
             boolean result = friendService.deleteFriend(friendshipId, userId);
-            return result ? Result.success("已删除好友") : Result.error("删除失败");
+            if (result) {
+                return Result.success("已删除好友");
+            } else {
+                return Result.error("删除失败");
+            }
         } catch (Exception e) {
             log.error("删除好友异常：", e);
             return Result.error(e.getMessage());
@@ -215,7 +231,11 @@ public class FriendController {
             }
             
             FriendVO friendVO = friendService.getFriendshipById(friendshipId, userId);
-            return friendVO != null ? Result.success(friendVO) : Result.error("好友关系不存在");
+            if (friendVO != null) {
+                return Result.success(friendVO);
+            } else {
+                return Result.error("好友关系不存在");
+            }
         } catch (Exception e) {
             log.error("获取好友关系详情异常：", e);
             return Result.error(e.getMessage());

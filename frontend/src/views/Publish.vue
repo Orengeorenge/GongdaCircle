@@ -231,6 +231,8 @@ import { ref, reactive, nextTick, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import AppHeader from '@/components/Layout/AppHeader.vue'
+import { postAPI } from '@/api/post'
+import { getUserInfo } from '@/utils/auth'
 
 const router = useRouter()
 
@@ -371,24 +373,49 @@ const saveDraft = () => {
 const handlePublish = async () => {
   if (!publishFormRef.value) return
   
-  await publishFormRef.value.validate((valid) => {
+  await publishFormRef.value.validate(async (valid) => {
     if (valid) {
       publishing.value = true
       
-      // 模拟发布请求
-      setTimeout(() => {
+      try {
+        // 准备发布数据，根据后端接口要求传递参数
+        const postData = {
+          title: publishForm.title || '', // 标题（可选）
+          content: publishForm.content,   // 内容（必填）
+          tags: publishForm.tags.join(','), // 标签，多个标签用逗号分隔
+          type: publishForm.type,         // 帖子类型
+          location: publishForm.location || '' // 位置信息（可选）
+        }
+        
+        // 调用发布帖子API
+        const response = await postAPI.createPost(postData)
+        
+        // 检查响应状态
+        if (response.data.code === 200) {
+          // 发布成功
+          ElMessage.success('发布成功！')
+          router.push('/home')
+        } else {
+          // 发布失败
+          ElMessage.error(response.data.message || '发布失败')
+        }
+      } catch (error) {
+        // 处理网络错误或其他异常
+        console.error('发布错误:', error)
+        const errorMessage = error.response?.data?.message || '发布失败，请检查网络连接'
+        ElMessage.error(errorMessage)
+      } finally {
         publishing.value = false
-        ElMessage.success('发布成功！')
-        router.push('/home')
-      }, 1000)
+      }
     }
   })
 }
 
 onMounted(() => {
-  const user = localStorage.getItem('user')
+  // 获取用户信息
+  const user = getUserInfo()
   if (user) {
-    userInfo.value = JSON.parse(user)
+    userInfo.value = user
   }
 })
 </script>

@@ -37,7 +37,11 @@ public class PostController {
             }
             
             boolean result = postService.publishPost(postDTO, userId);
-            return result ? Result.success("发布成功") : Result.error("发布失败");
+            if (result) {
+                return Result.success("发布成功");
+            } else {
+                return Result.error("发布失败");
+            }
         } catch (Exception e) {
             log.error("发布帖子异常：", e);
             return Result.error(e.getMessage());
@@ -51,7 +55,11 @@ public class PostController {
     public Result<PostVO> getPostById(@PathVariable Long id) {
         try {
             PostVO postVO = postService.getPostById(id);
-            return postVO != null ? Result.success(postVO) : Result.error("帖子不存在");
+            if (postVO != null) {
+                return Result.success(postVO);
+            } else {
+                return Result.error("帖子不存在");
+            }
         } catch (Exception e) {
             log.error("获取帖子详情异常：", e);
             return Result.error("获取帖子详情失败");
@@ -112,7 +120,11 @@ public class PostController {
             }
             
             boolean result = postService.updatePost(id, postDTO, userId);
-            return result ? Result.success("更新成功") : Result.error("更新失败");
+            if (result) {
+                return Result.success("更新成功");
+            } else {
+                return Result.error("更新失败");
+            }
         } catch (Exception e) {
             log.error("更新帖子异常：", e);
             return Result.error(e.getMessage());
@@ -131,7 +143,11 @@ public class PostController {
             }
             
             boolean result = postService.deletePost(id, userId);
-            return result ? Result.success("删除成功") : Result.error("删除失败");
+            if (result) {
+                return Result.success("删除成功");
+            } else {
+                return Result.error("删除失败");
+            }
         } catch (Exception e) {
             log.error("删除帖子异常：", e);
             return Result.error(e.getMessage());
@@ -150,7 +166,11 @@ public class PostController {
             }
             
             boolean result = postService.likePost(id, userId);
-            return result ? Result.success("点赞成功") : Result.error("点赞失败");
+            if (result) {
+                return Result.success("点赞成功");
+            } else {
+                return Result.error("点赞失败");
+            }
         } catch (Exception e) {
             log.error("点赞帖子异常：", e);
             return Result.error(e.getMessage());
@@ -169,7 +189,11 @@ public class PostController {
             }
             
             boolean result = postService.collectPost(id, userId);
-            return result ? Result.success("收藏成功") : Result.error("收藏失败");
+            if (result) {
+                return Result.success("收藏成功");
+            } else {
+                return Result.error("收藏失败");
+            }
         } catch (Exception e) {
             log.error("收藏帖子异常：", e);
             return Result.error(e.getMessage());

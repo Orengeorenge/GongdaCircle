@@ -71,22 +71,26 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
+        return http
+            .cors().configurationSource(corsConfigurationSource())
+            .and()
+            .csrf().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
                 // 公开接口
-                .requestMatchers("/user/register", "/user/login").permitAll()
-                .requestMatchers("/user/check/**").permitAll()
-                .requestMatchers("/post/list", "/post/{id}").permitAll()
-                .requestMatchers("/druid/**").permitAll()
-                .requestMatchers("/actuator/**").permitAll()
+                .antMatchers("/user/register", "/user/login").permitAll()
+                .antMatchers("/user/check/**").permitAll()
+                .antMatchers("/post/list", "/post/{id}").permitAll()
+                .antMatchers("/druid/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/test/**").permitAll()
                 // 其他接口需要认证
                 .anyRequest().authenticated()
-            )
-            .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        
-        return http.build();
+            .and()
+            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+            .and()
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
     }
 } 

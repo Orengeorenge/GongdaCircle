@@ -33,7 +33,11 @@ public class UserController {
     public Result<Boolean> register(@Validated @RequestBody UserDTO userDTO) {
         try {
             boolean result = userService.register(userDTO);
-            return result ? Result.success("注册成功") : Result.error("注册失败");
+            if (result) {
+                return Result.success(true, "注册成功");
+            } else {
+                return Result.error("注册失败");
+            }
         } catch (Exception e) {
             log.error("用户注册异常：", e);
             return Result.error(e.getMessage());
@@ -61,7 +65,11 @@ public class UserController {
     public Result<UserVO> getUserById(@PathVariable Long id) {
         try {
             UserVO userVO = userService.getUserById(id);
-            return userVO != null ? Result.success(userVO) : Result.error("用户不存在");
+            if (userVO != null) {
+                return Result.success(userVO);
+            } else {
+                return Result.error("用户不存在");
+            }
         } catch (Exception e) {
             log.error("获取用户信息异常：", e);
             return Result.error("获取用户信息失败");
@@ -75,7 +83,11 @@ public class UserController {
     public Result<Boolean> updateUser(@PathVariable Long id, @Validated @RequestBody UserDTO userDTO) {
         try {
             boolean result = userService.updateUser(id, userDTO);
-            return result ? Result.success("更新成功") : Result.error("更新失败");
+            if (result) {
+                return Result.success("更新成功");
+            } else {
+                return Result.error("更新失败");
+            }
         } catch (Exception e) {
             log.error("更新用户信息异常：", e);
             return Result.error(e.getMessage());
@@ -106,7 +118,11 @@ public class UserController {
     public Result<Boolean> updateUserStatus(@PathVariable Long id, @RequestParam Integer status) {
         try {
             boolean result = userService.updateUserStatus(id, status);
-            return result ? Result.success("状态更新成功") : Result.error("状态更新失败");
+            if (result) {
+                return Result.success("状态更新成功");
+            } else {
+                return Result.error("状态更新失败");
+            }
         } catch (Exception e) {
             log.error("更新用户状态异常：", e);
             return Result.error(e.getMessage());
