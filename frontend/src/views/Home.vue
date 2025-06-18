@@ -41,11 +41,11 @@
               <div v-for="post in posts" :key="post.id" class="card post-card">
                 <div class="post-header">
                   <div class="user-info">
-                    <el-avatar :size="40" :src="post.user.avatar">
-                      {{ post.user.nickname?.charAt(0) }}
+                    <el-avatar :size="40" :src="post.userInfo?.avatar || ''">
+                      {{ post.userInfo?.nickname?.charAt(0) || '用户' }}
                     </el-avatar>
                     <div class="user-details">
-                      <div class="username">{{ post.user.nickname }}</div>
+                      <div class="username">{{ post.userInfo?.nickname || '未知用户' }}</div>
                       <div class="post-time">{{ formatTime(post.createTime) }}</div>
                     </div>
                   </div>
@@ -119,7 +119,7 @@
               <div class="load-more">
                 <el-button 
                   v-if="hasMore" 
-                  :loading="loading" 
+                  :loading="loadingMore" 
                   @click="loadMore"
                   style="width: 100%"
                 >
@@ -173,18 +173,29 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import AppHeader from '@/components/Layout/AppHeader.vue'
+import { postAPI } from '@/api/post'
+import { getUserInfo } from '@/utils/auth'
 
 const router = useRouter()
 
+// 用户信息
 const userInfo = ref({
   nickname: '工大学子',
   avatar: ''
 })
 
+// 帖子数据与状态管理
 const posts = ref([])
 const loading = ref(false)
+const loadingMore = ref(false)
+const refreshing = ref(false)
 const hasMore = ref(true)
+const error = ref(null)
+const currentPage = ref(1)
+const pageSize = ref(10)
+const totalPages = ref(1)
 
+// 侧边栏数据
 const hotTopics = ref([
   { name: '工大校园', count: 128 },
   { name: '学习心得', count: 86 },
@@ -199,44 +210,149 @@ const recommendUsers = ref([
   { id: 3, nickname: '运动达人', desc: '体育学院 · 大四', avatar: '' }
 ])
 
-// 模拟帖子数据
-const mockPosts = [
-  {
-    id: 1,
-    title: '今天的学习心得分享',
-    content: '今天学习了Vue3的组合式API，感觉比Vue2的选项式API更加灵活和强大。通过setup函数可以更好地组织逻辑代码，ref和reactive的使用也让响应式数据管理变得更加清晰。',
-    user: { id: 1, nickname: '前端小白', avatar: '' },
-    createTime: new Date(Date.now() - 2 * 60 * 60 * 1000),
-    images: [],
-    tags: ['学习', 'Vue3', '前端'],
-    likeCount: 15,
-    commentCount: 8,
-    viewCount: 123,
-    isLiked: false
-  },
-  {
-    id: 2,
-    title: '校园美景随拍',
-    content: '春天的校园真的太美了！樱花盛开，绿草如茵，走在校园里心情都变得格外愉悦。',
-    user: { id: 2, nickname: '摄影爱好者', avatar: '' },
-    createTime: new Date(Date.now() - 4 * 60 * 60 * 1000),
-    images: [
-      'https://via.placeholder.com/300x200/4f46e5/ffffff?text=校园风景1',
-      'https://via.placeholder.com/300x200/06b6d4/ffffff?text=校园风景2'
-    ],
-    tags: ['校园', '摄影', '春天'],
-    likeCount: 32,
-    commentCount: 12,
-    viewCount: 256,
-    isLiked: true
+// 初始加载帖子
+const loadPosts = async () => {
+  try {
+    loading.value = true
+    error.value = null
+    
+    const params = {
+      page: currentPage.value,
+      size: pageSize.value
+    }
+    
+    console.log('发起请求获取帖子列表:', params)
+    const response = await postAPI.getPostList(params)
+    
+    // 记录完整响应，帮助调试
+    console.log('获取帖子列表响应:', response)
+    
+    // 处理响应数据
+    if (response.code === 200) {
+      // 确保每个帖子都有userInfo字段，如果没有则添加默认值
+      const processedPosts = (response.data.records || []).map(post => {
+        if (!post.userInfo) {
+          post.userInfo = {
+            nickname: '未知用户',
+            avatar: ''
+          }
+        }
+        return post
+      })
+      
+      posts.value = processedPosts
+      totalPages.value = response.data.pages || 1
+      hasMore.value = currentPage.value < totalPages.value
+    } else {
+      error.value = response.message || '加载帖子失败'
+      ElMessage.error(error.value)
+    }
+  } catch (err) {
+    console.error('加载帖子出错:', err)
+    error.value = '网络错误，请稍后重试'
+    ElMessage.error(error.value)
+  } finally {
+    loading.value = false
   }
-]
-
-const goToPublish = () => {
-  router.push('/publish')
 }
 
-const formatTime = (time) => {
+// 加载更多帖子
+const loadMore = async () => {
+  if (loadingMore.value || !hasMore.value) return
+  
+  try {
+    loadingMore.value = true
+    currentPage.value++
+    
+    const params = {
+      page: currentPage.value,
+      size: pageSize.value
+    }
+    
+    console.log('发起请求加载更多帖子:', params)
+    const response = await postAPI.getPostList(params)
+    console.log('加载更多帖子响应:', response)
+    
+    // 处理响应数据
+    if (response.code === 200) {
+      // 确保每个帖子都有userInfo字段，如果没有则添加默认值
+      const newPosts = (response.data.records || []).map(post => {
+        if (!post.userInfo) {
+          post.userInfo = {
+            nickname: '未知用户',
+            avatar: ''
+          }
+        }
+        return post
+      })
+      
+      posts.value = [...posts.value, ...newPosts]
+      totalPages.value = response.data.pages || 1
+      hasMore.value = currentPage.value < totalPages.value
+    } else {
+      ElMessage.error(response.message || '加载更多帖子失败')
+      currentPage.value--
+    }
+  } catch (err) {
+    console.error('加载更多帖子出错:', err)
+    ElMessage.error('网络错误，请稍后重试')
+    currentPage.value--
+  } finally {
+    loadingMore.value = false
+  }
+}
+
+// 下拉刷新
+const refreshPosts = async () => {
+  try {
+    refreshing.value = true
+    currentPage.value = 1
+    error.value = null
+    
+    const params = {
+      page: currentPage.value,
+      size: pageSize.value
+    }
+    
+    console.log('发起请求刷新帖子列表:', params)
+    const response = await postAPI.getPostList(params)
+    console.log('刷新帖子响应:', response)
+    
+    // 处理响应数据
+    if (response.code === 200) {
+      // 确保每个帖子都有userInfo字段，如果没有则添加默认值
+      const processedPosts = (response.data.records || []).map(post => {
+        if (!post.userInfo) {
+          post.userInfo = {
+            nickname: '未知用户',
+            avatar: ''
+          }
+        }
+        return post
+      })
+      
+      posts.value = processedPosts
+      totalPages.value = response.data.pages || 1
+      hasMore.value = currentPage.value < totalPages.value
+      ElMessage.success('刷新成功')
+    } else {
+      error.value = response.message || '刷新失败'
+      ElMessage.error(error.value)
+    }
+  } catch (err) {
+    console.error('刷新帖子出错:', err)
+    error.value = '网络错误，请稍后重试'
+    ElMessage.error(error.value)
+  } finally {
+    refreshing.value = false
+  }
+}
+
+// 格式化时间显示
+const formatTime = (timeStr) => {
+  if (!timeStr) return ''
+  
+  const time = new Date(timeStr)
   const now = new Date()
   const diff = now - time
   const minutes = Math.floor(diff / (1000 * 60))
@@ -251,42 +367,77 @@ const formatTime = (time) => {
   return time.toLocaleDateString()
 }
 
-const toggleLike = (post) => {
-  post.isLiked = !post.isLiked
-  post.likeCount += post.isLiked ? 1 : -1
-  ElMessage.success(post.isLiked ? '点赞成功' : '取消点赞')
+// 格式化标签字符串为数组
+const formatTags = (tagsStr) => {
+  if (!tagsStr) return []
+  return tagsStr.split(',').filter(tag => tag.trim() !== '')
 }
 
+// 格式化图片字符串为数组
+const formatImages = (imagesStr) => {
+  if (!imagesStr) return []
+  return imagesStr.split(',').filter(img => img.trim() !== '')
+}
+
+// 点赞帖子
+const toggleLike = async (post) => {
+  try {
+    console.log('发起点赞请求:', post.id)
+    const response = await postAPI.likePost(post.id)
+    console.log('点赞响应:', response)
+    
+    if (response.code === 200) {
+      // 根据后端返回更新点赞状态和数量
+  post.isLiked = !post.isLiked
+      post.likeCount = post.isLiked ? post.likeCount + 1 : post.likeCount - 1
+      ElMessage.success(post.isLiked ? '点赞成功' : '已取消点赞')
+    } else {
+      ElMessage.error(response.message || '操作失败')
+    }
+  } catch (error) {
+    console.error('点赞操作失败:', error)
+    ElMessage.error('网络错误，请稍后重试')
+  }
+}
+
+// 显示评论
 const showComments = (post) => {
   ElMessage.info('评论功能开发中...')
 }
 
-const collectPost = (post) => {
+// 收藏帖子
+const collectPost = async (post) => {
+  try {
+    console.log('发起收藏请求:', post.id)
+    const response = await postAPI.collectPost(post.id)
+    console.log('收藏响应:', response)
+    
+    if (response.code === 200) {
   ElMessage.success('收藏成功')
-}
-
-const loadMore = () => {
-  loading.value = true
-  
-  // 模拟加载更多
-  setTimeout(() => {
-    loading.value = false
-    if (posts.value.length >= 10) {
-      hasMore.value = false
     } else {
-      posts.value.push(...mockPosts)
+      ElMessage.error(response.message || '收藏失败')
     }
-  }, 1000)
+  } catch (error) {
+    console.error('收藏操作失败:', error)
+    ElMessage.error('网络错误，请稍后重试')
+  }
 }
 
+// 跳转到发布页面
+const goToPublish = () => {
+  router.push('/publish')
+}
+
+// 页面加载时获取用户信息和帖子列表
 onMounted(() => {
-  const user = localStorage.getItem('user')
+  // 获取当前用户信息
+  const user = getUserInfo()
   if (user) {
-    userInfo.value = JSON.parse(user)
+    userInfo.value = user
   }
   
-  // 初始化帖子数据
-  posts.value = [...mockPosts]
+  // 加载帖子列表
+  loadPosts()
 })
 </script>
 

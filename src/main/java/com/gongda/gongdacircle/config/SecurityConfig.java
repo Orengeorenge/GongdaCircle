@@ -56,10 +56,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        // 明确指定允许的前端域名，包括开发环境和生产环境
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:3000",  // 本地开发环境
+            "http://web.softmyh.site", // 生产环境前端域名
+            "https://web.softmyh.site" // HTTPS版本
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L); // 预检请求的有效期，单位为秒
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

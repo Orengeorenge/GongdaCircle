@@ -18,6 +18,7 @@ com\gongda\gongdacircle\service\impl\FriendServiceImpl.class
 com\gongda\gongdacircle\dto\LoginDTO.class
 com\gongda\gongdacircle\mapper\SystemNoticeMapper.class
 com\gongda\gongdacircle\controller\TestController.class
+com\gongda\gongdacircle\dto\UserUpdateDTO.class
 com\gongda\gongdacircle\entity\Comment.class
 com\gongda\gongdacircle\service\impl\PostServiceImpl.class
 com\gongda\gongdacircle\vo\UserVO.class

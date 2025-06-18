@@ -63,7 +63,7 @@
               </el-form-item>
               
               <!-- 图片上传 -->
-              <el-form-item v-if="publishForm.type === 2" label="图片">
+              <el-form-item v-if="publishForm.type === 2" label="图片" prop="images">
                 <div class="upload-section">
                   <el-upload
                     v-model:file-list="imageList"
@@ -77,28 +77,66 @@
                   >
                     <el-icon><Plus /></el-icon>
                   </el-upload>
+                  
+                  <!-- 图片上传进度条 -->
+                  <div v-if="uploadProgress > 0 && uploadProgress < 100" class="upload-progress">
+                    <el-progress :percentage="uploadProgress" />
+                    <div class="progress-text">正在上传图片：{{ uploadProgress }}%</div>
+                  </div>
+                  
+                  <!-- 图片预览对话框 -->
+                  <el-dialog v-model="dialogVisible" title="图片预览">
+                    <img w-full :src="dialogImageUrl" alt="预览图片" style="max-width: 100%;" />
+                  </el-dialog>
+                  
                   <div class="upload-tip">
-                    最多上传9张图片，支持 jpg、png、gif 格式
+                    最多上传9张图片，支持 jpg、png、gif 格式，每张图片不超过5MB
+                  </div>
+                  
+                  <div v-if="imageList.length > 0" class="upload-actions">
+                    <el-button type="primary" size="small" @click="uploadAllImages" :loading="uploading">
+                      上传图片
+                    </el-button>
                   </div>
                 </div>
               </el-form-item>
               
               <!-- 视频上传 -->
-              <el-form-item v-if="publishForm.type === 3" label="视频">
+              <el-form-item v-if="publishForm.type === 3" label="视频" prop="video">
                 <div class="upload-section">
                   <el-upload
                     action="#"
                     :limit="1"
                     :auto-upload="false"
                     :before-upload="beforeVideoUpload"
+                    :on-change="handleVideoChange"
+                    :file-list="videoList"
                   >
-                    <el-button type="primary">
+                    <el-button type="primary" :disabled="videoList.length >= 1">
                       <el-icon><Upload /></el-icon>
                       选择视频
                     </el-button>
                   </el-upload>
+                  
+                  <!-- 视频上传进度条 -->
+                  <div v-if="videoUploadProgress > 0 && videoUploadProgress < 100" class="upload-progress">
+                    <el-progress :percentage="videoUploadProgress" />
+                    <div class="progress-text">正在上传视频：{{ videoUploadProgress }}%</div>
+                  </div>
+                  
+                  <!-- 视频预览 -->
+                  <div v-if="videoPreviewUrl" class="video-preview">
+                    <video controls :src="videoPreviewUrl" style="max-width: 100%; max-height: 300px;"></video>
+                  </div>
+                  
                   <div class="upload-tip">
                     支持 mp4、mov、avi 格式，大小不超过100MB
+                  </div>
+                  
+                  <div v-if="videoList.length > 0" class="upload-actions">
+                    <el-button type="primary" size="small" @click="uploadVideo" :loading="videoUploading">
+                      上传视频
+                    </el-button>
                   </div>
                 </div>
               </el-form-item>
@@ -229,10 +267,10 @@
 <script setup>
 import { ref, reactive, nextTick, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import AppHeader from '@/components/Layout/AppHeader.vue'
 import { postAPI } from '@/api/post'
-import { getUserInfo } from '@/utils/auth'
+import { getUserInfo, isAuthenticated } from '@/utils/auth'
 
 const router = useRouter()
 
@@ -242,6 +280,16 @@ const publishing = ref(false)
 const inputVisible = ref(false)
 const inputValue = ref('')
 const imageList = ref([])
+const videoList = ref([])
+const dialogVisible = ref(false)
+const dialogImageUrl = ref('')
+const uploadProgress = ref(0)
+const videoUploadProgress = ref(0)
+const videoPreviewUrl = ref('')
+const uploading = ref(false)
+const videoUploading = ref(false)
+const uploadedImages = ref([]) // 存储已上传的图片URL
+const uploadedVideo = ref('') // 存储已上传的视频URL
 
 const userInfo = ref({
   nickname: '工大学子',
@@ -256,7 +304,9 @@ const publishForm = reactive({
   location: '',
   linkUrl: '',
   isTop: false,
-  allowComment: true
+  allowComment: true,
+  images: '', // 用于存储已上传的图片URL（多个以逗号分隔）
+  video: ''  // 用于存储已上传的视频URL
 })
 
 const publishRules = {
@@ -269,6 +319,32 @@ const publishRules = {
   ],
   linkUrl: [
     { type: 'url', message: '请输入正确的链接地址', trigger: 'blur' }
+  ],
+  images: [
+    { 
+      required: false,
+      validator: (rule, value, callback) => {
+        if (publishForm.type === 2 && !value && imageList.value.length === 0) {
+          callback(new Error('请上传至少一张图片'));
+        } else {
+          callback();
+        }
+      }, 
+      trigger: 'change' 
+    }
+  ],
+  video: [
+    { 
+      required: false,
+      validator: (rule, value, callback) => {
+        if (publishForm.type === 3 && !value) {
+          callback(new Error('请上传视频'));
+        } else {
+          callback();
+        }
+      }, 
+      trigger: 'change' 
+    }
   ]
 }
 
@@ -288,6 +364,14 @@ const handleTypeChange = (type) => {
   }
   if (type !== 2) {
     imageList.value = []
+    uploadedImages.value = []
+    publishForm.images = ''
+  }
+  if (type !== 3) {
+    videoList.value = []
+    videoPreviewUrl.value = ''
+    uploadedVideo.value = ''
+    publishForm.video = ''
   }
 }
 
@@ -321,12 +405,22 @@ const addPopularTag = (tag) => {
 
 const handlePictureCardPreview = (file) => {
   // 图片预览
-  console.log('预览图片:', file)
+  dialogImageUrl.value = file.url || URL.createObjectURL(file.raw)
+  dialogVisible.value = true
 }
 
 const handleRemove = (file, fileList) => {
   // 移除图片
   console.log('移除图片:', file)
+  
+  // 如果已经上传过，也从uploadedImages中移除
+  if (file.url && uploadedImages.value.includes(file.url)) {
+    const index = uploadedImages.value.indexOf(file.url)
+    if (index > -1) {
+      uploadedImages.value.splice(index, 1)
+      publishForm.images = uploadedImages.value.join(',')
+    }
+  }
 }
 
 const beforeUpload = (file) => {
@@ -356,7 +450,105 @@ const beforeVideoUpload = (file) => {
     ElMessage.error('视频大小不能超过100MB!')
     return false
   }
+  
+  // 创建视频预览
+  videoPreviewUrl.value = URL.createObjectURL(file.raw || file)
   return true
+}
+
+const handleVideoChange = (file) => {
+  // 处理视频文件变化
+  if (file.status === 'ready') {
+    videoList.value = [file]
+    videoPreviewUrl.value = URL.createObjectURL(file.raw)
+  }
+}
+
+const uploadAllImages = async () => {
+  if (imageList.value.length === 0) {
+    ElMessage.warning('请先选择要上传的图片')
+    return
+  }
+
+  uploading.value = true
+  uploadProgress.value = 0
+  uploadedImages.value = [] // 清空之前上传的图片URL
+  
+  try {
+    // 逐个上传图片
+    for (let i = 0; i < imageList.value.length; i++) {
+      const file = imageList.value[i].raw
+      if (!file) continue
+      
+      uploadProgress.value = Math.round((i / imageList.value.length) * 50) // 进度条前半段用于显示循环进度
+      
+      await uploadImage(file)
+    }
+    
+    // 更新表单中的图片字段
+    publishForm.images = uploadedImages.value.join(',')
+    ElMessage.success('图片上传成功')
+  } catch (error) {
+    console.error('上传图片出错:', error)
+    ElMessage.error('上传图片失败: ' + (error.message || '网络错误'))
+  } finally {
+    uploading.value = false
+    uploadProgress.value = 0
+  }
+}
+
+const uploadImage = async (file) => {
+  try {
+    const response = await postAPI.uploadImage(file, percentage => {
+      // 当前图片的上传进度
+      uploadProgress.value = percentage
+    })
+    
+    if (response.code === 200 && response.data) {
+      // 上传成功，保存图片URL
+      uploadedImages.value.push(response.data)
+      return response.data
+    } else {
+      throw new Error(response.message || '上传失败')
+    }
+  } catch (error) {
+    console.error('上传图片失败:', error)
+    throw error
+  }
+}
+
+const uploadVideo = async () => {
+  if (videoList.value.length === 0) {
+    ElMessage.warning('请先选择要上传的视频')
+    return
+  }
+  
+  videoUploading.value = true
+  videoUploadProgress.value = 0
+  
+  try {
+    const file = videoList.value[0].raw
+    if (!file) throw new Error('无效的视频文件')
+    
+    const response = await postAPI.uploadVideo(file, percentage => {
+      videoUploadProgress.value = percentage
+    })
+    
+    if (response.code === 200 && response.data) {
+      // 上传成功，保存视频URL
+      uploadedVideo.value = response.data
+      publishForm.video = response.data
+      ElMessage.success('视频上传成功')
+    } else {
+      throw new Error(response.message || '上传失败')
+    }
+  } catch (error) {
+    console.error('上传视频出错:', error)
+    ElMessage.error('上传视频失败: ' + (error.message || '网络错误'))
+  } finally {
+    videoUploading.value = false
+    videoUploadProgress.value = 0
+  }
 }
 
 const parseLinkInfo = () => {
@@ -370,45 +562,137 @@ const saveDraft = () => {
   ElMessage.success('草稿保存成功')
 }
 
+const validateUploadedMedia = () => {
+  // 检查是否已上传媒体文件
+  if (publishForm.type === 2 && !publishForm.images) {
+    ElMessage.warning('请先上传图片')
+    return false
+  }
+  
+  if (publishForm.type === 3 && !publishForm.video) {
+    ElMessage.warning('请先上传视频')
+    return false
+  }
+  
+  return true
+}
+
 const handlePublish = async () => {
   if (!publishFormRef.value) return
   
-  await publishFormRef.value.validate(async (valid) => {
+  // 先检查用户是否已登录
+  if (!isAuthenticated()) {
+    ElMessage.error('请先登录后再发布')
+    router.push('/login')
+    return
+  }
+  
+  // 发布前确认媒体文件已上传
+  if (!validateUploadedMedia()) {
+    return
+  }
+  
+  await publishFormRef.value.validate(async (valid, fields) => {
     if (valid) {
       publishing.value = true
       
       try {
+        // 获取当前用户ID
+        const currentUser = getUserInfo()
+        if (!currentUser || !currentUser.id) {
+          ElMessage.error('无法获取当前用户信息，请重新登录')
+          router.push('/login')
+          return
+        }
+        
         // 准备发布数据，根据后端接口要求传递参数
         const postData = {
           title: publishForm.title || '', // 标题（可选）
           content: publishForm.content,   // 内容（必填）
           tags: publishForm.tags.join(','), // 标签，多个标签用逗号分隔
           type: publishForm.type,         // 帖子类型
-          location: publishForm.location || '' // 位置信息（可选）
+          location: publishForm.location || '', // 位置信息（可选）
+          userId: currentUser.id          // 传递用户ID参数
         }
+        
+        // 根据帖子类型添加相应的字段
+        if (publishForm.type === 2) {
+          postData.images = publishForm.images // 图片URL
+        } else if (publishForm.type === 3) {
+          postData.video = publishForm.video // 视频URL
+        } else if (publishForm.type === 4) {
+          postData.linkUrl = publishForm.linkUrl // 链接URL
+        }
+        
+        console.log('准备发布帖子:', postData)
         
         // 调用发布帖子API
         const response = await postAPI.createPost(postData)
         
         // 检查响应状态
-        if (response.data.code === 200) {
+        if (response.code === 200) {
           // 发布成功
           ElMessage.success('发布成功！')
-          router.push('/home')
+          
+          // 是否继续发布?
+          ElMessageBox.confirm(
+            '发布成功！是否返回首页查看?',
+            '发布成功',
+            {
+              confirmButtonText: '返回首页',
+              cancelButtonText: '继续发布',
+              type: 'success'
+            }
+          ).then(() => {
+            router.push('/home')
+          }).catch(() => {
+            // 重置表单
+            resetForm()
+          })
         } else {
           // 发布失败
-          ElMessage.error(response.data.message || '发布失败')
+          if (response.code === 401) {
+            ElMessage.error('登录已过期，请重新登录')
+            router.push('/login')
+          } else {
+            ElMessage.error(response.message || '发布失败')
+          }
         }
       } catch (error) {
         // 处理网络错误或其他异常
         console.error('发布错误:', error)
-        const errorMessage = error.response?.data?.message || '发布失败，请检查网络连接'
+        const errorMessage = error.message || '发布失败，请检查网络连接'
         ElMessage.error(errorMessage)
       } finally {
         publishing.value = false
       }
+    } else {
+      console.log('表单验证失败:', fields)
+      ElMessage.error('请完善表单信息')
     }
   })
+}
+
+const resetForm = () => {
+  // 重置表单
+  publishForm.type = 1
+  publishForm.title = ''
+  publishForm.content = ''
+  publishForm.tags = []
+  publishForm.location = ''
+  publishForm.linkUrl = ''
+  publishForm.images = ''
+  publishForm.video = ''
+  
+  // 重置上传列表
+  imageList.value = []
+  videoList.value = []
+  uploadedImages.value = []
+  uploadedVideo.value = ''
+  videoPreviewUrl.value = ''
+  
+  // 重置表单验证
+  publishFormRef.value?.resetFields()
 }
 
 onMounted(() => {
@@ -416,6 +700,10 @@ onMounted(() => {
   const user = getUserInfo()
   if (user) {
     userInfo.value = user
+  } else {
+    // 如果没有用户信息，提示用户登录
+    ElMessage.warning('请先登录后再发布内容')
+    router.push('/login')
   }
 })
 </script>
@@ -459,6 +747,36 @@ onMounted(() => {
       margin-top: 8px;
       font-size: 12px;
       color: var(--text-secondary);
+    }
+    
+    .upload-progress {
+      margin: 16px 0;
+      
+      .progress-text {
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+    }
+    
+    .upload-actions {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .video-preview {
+      margin: 16px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
     }
   }
   
@@ -600,6 +918,23 @@ onMounted(() => {
     .el-button {
       flex: 1;
     }
+  }
+}
+
+:deep(.el-upload--picture-card) {
+  --el-upload-picture-card-size: 100px;
+  
+  &:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+:deep(.el-upload-list--picture-card .el-upload-list__item) {
+  --el-upload-list-picture-card-size: 100px;
+  
+  img {
+    object-fit: cover;
   }
 }
 </style> 

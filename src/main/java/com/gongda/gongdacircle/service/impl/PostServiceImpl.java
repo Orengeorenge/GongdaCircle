@@ -209,6 +209,15 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         
         // 获取发布用户信息
         UserVO userVO = userService.getUserById(post.getUserId());
+        
+        // 确保即使用户不存在也能返回带有默认值的userInfo
+        if (userVO == null) {
+            userVO = new UserVO();
+            userVO.setId(post.getUserId());
+            userVO.setNickname("未知用户");
+            userVO.setAvatar("");
+        }
+        
         postVO.setUserInfo(userVO);
         
         return postVO;

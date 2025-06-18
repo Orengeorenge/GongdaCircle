@@ -16,6 +16,11 @@ import javax.validation.constraints.Size;
 public class PostDTO {
     
     /**
+     * 用户ID（临时方案，解决认证问题）
+     */
+    private Long userId;
+    
+    /**
      * 帖子标题（可选）
      */
     @Size(max = 200, message = "标题长度不能超过200个字符")

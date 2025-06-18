@@ -3871,3 +3871,1109 @@ java.lang.RuntimeException: ÂØÜÁ†ÅÈîôËØØ
 2025-06-18 17:11:19.293 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
 2025-06-18 17:12:11.469 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
 2025-06-18 17:12:11.478 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2025-06-18 17:55:12.133 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Starting GongdaCircleApplication using Java 11.0.27 on orange with PID 26208 (D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle\target\classes started by 86132 in D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle)
+2025-06-18 17:55:12.134 [main] DEBUG com.gongda.gongdacircle.GongdaCircleApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-06-18 17:55:12.135 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 17:55:12.850 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-18 17:55:12.852 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-18 17:55:12.872 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-06-18 17:55:13.251 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-06-18 17:55:13.256 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 17:55:13.256 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-06-18 17:55:13.324 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-06-18 17:55:13.324 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1146 ms
+2025-06-18 17:55:13.372 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-06-18 17:55:13.832 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-06-18 17:55:13.897 [main] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-06-18 17:55:14.975 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-06-18 17:55:15.029 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/register']
+2025-06-18 17:55:15.034 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/login']
+2025-06-18 17:55:15.034 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/check/**']
+2025-06-18 17:55:15.034 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/list']
+2025-06-18 17:55:15.034 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/{id}']
+2025-06-18 17:55:15.034 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/druid/**']
+2025-06-18 17:55:15.035 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/actuator/**']
+2025-06-18 17:55:15.035 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/test/**']
+2025-06-18 17:55:15.035 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [authenticated] for any request
+2025-06-18 17:55:15.039 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3a72e2e8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42401b81, org.springframework.security.web.context.SecurityContextPersistenceFilter@18811c42, org.springframework.security.web.header.HeaderWriterFilter@389a1e34, org.springframework.web.filter.CorsFilter@f1d1463, org.springframework.security.web.authentication.logout.LogoutFilter@780ee3ad, com.gongda.gongdacircle.security.JwtAuthenticationFilter@1c7cd434, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@32b95de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@629cbb1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47ef5a33, org.springframework.security.web.session.SessionManagementFilter@3fe8ad3f, org.springframework.security.web.access.ExceptionTranslationFilter@3568ea59, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@cf9bd1e]
+2025-06-18 17:55:15.569 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-06-18 17:55:15.621 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-06-18 17:55:15.633 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Started GongdaCircleApplication in 3.803 seconds (JVM running for 4.72)
+2025-06-18 17:55:26.609 [http-nio-8080-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 17:55:26.610 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 17:55:26.612 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-18 17:55:26.619 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 17:55:26.621 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:55:26.633 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:55:26.643 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:55:26.643 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:55:26.691 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:55:26.698 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:55:26.698 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:55:26.936 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:55:47.289 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 17:55:47.289 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:55:47.290 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:55:47.293 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:55:47.293 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:55:47.299 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:55:47.300 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:55:47.301 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:55:47.349 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:55:50.494 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:55:50.495 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:55:50.500 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:55:50.501 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:55:50.501 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:55:50.546 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:00.552 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 17:56:00.552 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:00.553 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:00.556 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:56:00.557 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:00.566 [http-nio-8080-exec-7] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:56:00.566 [http-nio-8080-exec-7] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:56:00.567 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:56:00.625 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:07.478 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /user/login
+2025-06-18 17:56:07.478 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:07.479 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:07.484 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /user/login
+2025-06-18 17:56:07.485 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:07.486 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-18 17:56:07.487 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /user/login] with attributes [permitAll]
+2025-06-18 17:56:07.487 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /user/login
+2025-06-18 17:56:07.781 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:07.829 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 17:56:07.830 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:07.830 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:56:07.836 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:56:07.837 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:56:07.841 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:56:07.842 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:56:07.843 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:56:07.871 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:58:21.455 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 17:58:21.455 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:58:21.457 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:58:21.460 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:58:21.460 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:58:21.467 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:58:21.468 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:58:21.468 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:58:21.518 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 17:58:21.584 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 17:58:21.584 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 17:58:21.590 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 17:58:21.591 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 17:58:21.591 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 17:58:21.621 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:01:21.231 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:01:21.232 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:01:21.232 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:01:21.235 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:01:21.235 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:01:21.243 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:01:21.243 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:01:21.244 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:01:21.275 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:00.279 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:03:00.279 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:00.280 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:00.285 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:00.285 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:00.292 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:00.292 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:00.293 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:00.314 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:01.384 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:01.384 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:01.390 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:01.390 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:01.391 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:01.394 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:06.422 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:03:06.423 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:06.423 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:06.427 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:06.427 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:06.433 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:06.433 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:06.434 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:06.437 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:06.928 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:06.928 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:06.934 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:06.935 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:06.935 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:06.938 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:07.086 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:07.086 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:07.090 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:07.091 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:07.091 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:07.093 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:07.247 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:07.248 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:07.252 [http-nio-8080-exec-7] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:07.252 [http-nio-8080-exec-7] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:07.252 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:07.255 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:11.897 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:03:11.897 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:11.898 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:11.902 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:11.902 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:11.907 [http-nio-8080-exec-9] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:11.908 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:11.908 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:11.911 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:42.126 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:03:42.126 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:42.127 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:03:42.131 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:03:42.131 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:03:42.133 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:03:42.133 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:03:42.133 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:03:42.135 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:26.871 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:12:26.872 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:26.873 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:26.876 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:12:26.876 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:26.880 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:26.881 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:12:26.881 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:12:26.906 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:30.528 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /auth/me
+2025-06-18 18:12:30.528 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:30.529 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:30.534 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /auth/me
+2025-06-18 18:12:30.534 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:30.538 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:30.538 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /auth/me] with attributes [authenticated]
+2025-06-18 18:12:30.539 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /auth/me
+2025-06-18 18:12:30.541 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:33.622 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:12:33.622 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:33.623 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:33.628 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:12:33.628 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:33.632 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:33.632 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:12:33.632 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:12:33.655 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:34.792 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /friend/list?page=1&size=20&keyword=
+2025-06-18 18:12:34.792 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:34.793 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:34.793 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /friend/requests?page=1&size=10
+2025-06-18 18:12:34.793 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:34.794 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:34.797 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /friend/list?page=1&size=20&keyword=
+2025-06-18 18:12:34.797 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /friend/requests?page=1&size=10
+2025-06-18 18:12:34.797 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:34.797 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:34.801 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:34.801 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /friend/requests?page=1&size=10] with attributes [authenticated]
+2025-06-18 18:12:34.801 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:34.801 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /friend/requests?page=1&size=10
+2025-06-18 18:12:34.801 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /friend/list?page=1&size=20&keyword=] with attributes [authenticated]
+2025-06-18 18:12:34.801 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /friend/list?page=1&size=20&keyword=
+2025-06-18 18:12:34.804 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:34.808 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:34.983 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:12:34.983 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:34.986 [http-nio-8080-exec-2] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:34.987 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:12:34.987 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:12:35.011 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:46.288 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:12:46.288 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:46.289 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:46.293 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:12:46.293 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:46.297 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:46.298 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:12:46.298 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:12:46.300 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:48.095 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:12:48.095 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:48.098 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:48.099 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:12:48.099 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:12:48.101 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:48.220 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:12:48.220 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:48.223 [http-nio-8080-exec-7] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:48.224 [http-nio-8080-exec-7] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:12:48.224 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:12:48.226 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:12:48.821 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:12:48.821 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:12:48.825 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:12:48.825 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:12:48.825 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:12:48.827 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:21:24.084 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Starting GongdaCircleApplication using Java 17.0.9 on orange with PID 5996 (D:\1—ßœ∞\¥Û»˝œ¬\»Ìº˛π§≥Ã\GongdaCircle\target\classes started by 86132 in D:\1—ßœ∞\¥Û»˝œ¬\»Ìº˛π§≥Ã\GongdaCircle)
+2025-06-18 18:21:24.087 [main] DEBUG com.gongda.gongdacircle.GongdaCircleApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-06-18 18:21:24.089 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 18:21:24.857 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-18 18:21:24.860 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-18 18:21:24.896 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-06-18 18:21:25.554 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-06-18 18:21:25.565 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 18:21:25.565 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-06-18 18:21:25.684 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-06-18 18:21:25.684 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1553 ms
+2025-06-18 18:21:25.761 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-06-18 18:21:26.512 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-06-18 18:21:26.613 [main] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-06-18 18:21:27.201 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-06-18 18:21:27.285 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/register']
+2025-06-18 18:21:27.304 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/login']
+2025-06-18 18:21:27.305 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/check/**']
+2025-06-18 18:21:27.305 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/list']
+2025-06-18 18:21:27.306 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/{id}']
+2025-06-18 18:21:27.306 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/druid/**']
+2025-06-18 18:21:27.307 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/actuator/**']
+2025-06-18 18:21:27.307 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/test/**']
+2025-06-18 18:21:27.308 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [authenticated] for any request
+2025-06-18 18:21:27.314 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@144440f5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e2c8ef, org.springframework.security.web.context.SecurityContextPersistenceFilter@18a0721b, org.springframework.security.web.header.HeaderWriterFilter@25dcf1b6, org.springframework.web.filter.CorsFilter@290807e5, org.springframework.security.web.authentication.logout.LogoutFilter@f5ae29e, com.gongda.gongdacircle.security.JwtAuthenticationFilter@3095d401, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66e12c3b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@44485db, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60bc308b, org.springframework.security.web.session.SessionManagementFilter@4c6fc3e7, org.springframework.security.web.access.ExceptionTranslationFilter@4213bc3e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43778371]
+2025-06-18 18:21:27.941 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-06-18 18:21:27.983 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2025-06-18 18:21:27.996 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2025-06-18 18:21:28.002 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2025-06-18 18:21:28.005 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-18 18:21:28.032 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-06-18 18:21:28.048 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-06-18 18:25:33.218 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:25:33.218 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:33.219 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:33.223 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:25:33.224 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:33.227 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:33.227 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:25:33.227 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:25:33.253 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:35.659 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:25:35.659 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:35.663 [http-nio-8080-exec-2] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:35.663 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:25:35.663 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:25:35.688 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:37.115 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:25:37.116 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:37.121 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:37.121 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:25:37.121 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:25:37.147 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:42.169 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:25:42.169 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:42.170 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:42.173 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:25:42.173 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:42.177 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:42.177 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:25:42.178 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:25:42.180 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:51.813 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /user/login
+2025-06-18 18:25:51.813 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:51.814 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:51.816 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /user/login
+2025-06-18 18:25:51.817 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:51.823 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:51.823 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /user/login] with attributes [permitAll]
+2025-06-18 18:25:51.823 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /user/login
+2025-06-18 18:25:51.969 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:52.036 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:25:52.036 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:52.037 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:52.044 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:25:52.044 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:52.047 [http-nio-8080-exec-10] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:52.047 [http-nio-8080-exec-10] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:25:52.047 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:25:52.068 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:25:53.965 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:25:53.965 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:25:53.969 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:25:53.970 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:25:53.970 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:25:53.995 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:26:02.386 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:26:02.386 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:26:02.386 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:26:02.389 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:26:02.389 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:26:02.393 [http-nio-8080-exec-2] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:26:02.394 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:26:02.394 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:26:02.396 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:28:47.508 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /user/login
+2025-06-18 18:28:47.509 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:28:47.509 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:28:47.511 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /user/login
+2025-06-18 18:28:47.512 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:28:47.517 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:28:47.517 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /user/login] with attributes [permitAll]
+2025-06-18 18:28:47.517 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /user/login
+2025-06-18 18:28:47.621 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:28:47.720 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 18:28:47.720 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:28:47.721 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:28:47.724 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 18:28:47.724 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:28:47.726 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:28:47.726 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 18:28:47.726 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 18:28:47.738 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:29:04.321 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 18:29:04.321 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:29:04.321 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 18:29:04.324 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 18:29:04.325 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 18:29:04.327 [http-nio-8080-exec-10] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 18:29:04.328 [http-nio-8080-exec-10] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 18:29:04.328 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 18:29:04.330 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:08.974 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /user/login
+2025-06-18 19:00:08.975 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:08.977 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:08.980 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /user/login
+2025-06-18 19:00:08.980 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:08.985 [http-nio-8080-exec-2] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 19:00:08.986 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /user/login] with attributes [permitAll]
+2025-06-18 19:00:08.986 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /user/login
+2025-06-18 19:00:09.198 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:09.281 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 19:00:09.282 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:09.282 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:09.285 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 19:00:09.285 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:09.290 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 19:00:09.291 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 19:00:09.291 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 19:00:09.315 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:10.880 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 19:00:10.880 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:10.886 [http-nio-8080-exec-6] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 19:00:10.886 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 19:00:10.886 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 19:00:10.911 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:20.703 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 19:00:20.703 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:20.704 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 19:00:20.707 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 19:00:20.707 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 19:00:20.713 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 19:00:20.715 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 19:00:20.715 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 19:00:20.720 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:40:43.661 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2025-06-18 20:40:43.708 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2025-06-18 20:43:53.813 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Starting GongdaCircleApplication using Java 11.0.27 on orange with PID 13964 (D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle\target\classes started by 86132 in D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle)
+2025-06-18 20:43:53.816 [main] DEBUG com.gongda.gongdacircle.GongdaCircleApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-06-18 20:43:53.817 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 20:43:54.573 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-18 20:43:54.574 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-18 20:43:54.593 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-06-18 20:43:55.006 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-06-18 20:43:55.014 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 20:43:55.014 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-06-18 20:43:55.099 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-06-18 20:43:55.099 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1239 ms
+2025-06-18 20:43:55.156 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-06-18 20:43:55.699 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-06-18 20:43:55.768 [main] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-06-18 20:43:57.112 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-06-18 20:43:57.162 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/register']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/login']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/check/**']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/list']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/{id}']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/druid/**']
+2025-06-18 20:43:57.169 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/actuator/**']
+2025-06-18 20:43:57.170 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/test/**']
+2025-06-18 20:43:57.170 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [authenticated] for any request
+2025-06-18 20:43:57.175 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70d687b8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6533629, org.springframework.security.web.context.SecurityContextPersistenceFilter@797f97e3, org.springframework.security.web.header.HeaderWriterFilter@7e1a9173, org.springframework.web.filter.CorsFilter@f49e81a, org.springframework.security.web.authentication.logout.LogoutFilter@7ee64b53, com.gongda.gongdacircle.security.JwtAuthenticationFilter@1b409a79, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77cd235b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@302da330, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b444b5, org.springframework.security.web.session.SessionManagementFilter@595ec862, org.springframework.security.web.access.ExceptionTranslationFilter@248d3a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7b3085a3]
+2025-06-18 20:43:57.764 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-06-18 20:43:57.824 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-06-18 20:43:57.836 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Started GongdaCircleApplication in 4.409 seconds (JVM running for 5.431)
+2025-06-18 20:43:58.321 [RMI TCP Connection(3)-192.168.2.1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 20:43:58.321 [RMI TCP Connection(3)-192.168.2.1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 20:43:58.323 [RMI TCP Connection(3)-192.168.2.1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-18 20:43:59.632 [boundedElastic-1] WARN  o.s.b.actuate.redis.RedisReactiveHealthIndicator - Redis health check failed
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedReactiveConnection(LettuceConnectionFactory.java:1117)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:509)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getReactiveConnection(LettuceConnectionFactory.java:103)
+	at reactor.core.publisher.MonoSupplier.call(MonoSupplier.java:86)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:227)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 14 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2025-06-18 20:46:12.119 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Starting GongdaCircleApplication using Java 11.0.27 on orange with PID 14396 (D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle\target\classes started by 86132 in D:\1Â≠¶‰π†\Â§ß‰∏â‰∏ã\ËΩØ‰ª∂Â∑•Á®ã\GongdaCircle)
+2025-06-18 20:46:12.121 [main] DEBUG com.gongda.gongdacircle.GongdaCircleApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-06-18 20:46:12.122 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 20:46:12.805 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-18 20:46:12.806 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-18 20:46:12.825 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-06-18 20:46:13.170 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-06-18 20:46:13.176 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 20:46:13.176 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-06-18 20:46:13.246 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-06-18 20:46:13.247 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1086 ms
+2025-06-18 20:46:13.296 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-06-18 20:46:13.736 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-06-18 20:46:13.804 [main] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-06-18 20:46:14.885 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-06-18 20:46:14.940 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/register']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/login']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/user/check/**']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/list']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/post/{id}']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/druid/**']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/actuator/**']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [permitAll] for Ant [pattern='/test/**']
+2025-06-18 20:46:14.946 [main] DEBUG o.s.s.w.a.e.ExpressionBasedFilterInvocationSecurityMetadataSource - Adding web access control expression [authenticated] for any request
+2025-06-18 20:46:14.952 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@92e2c93, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6697f3d, org.springframework.security.web.context.SecurityContextPersistenceFilter@3fe8ad3f, org.springframework.security.web.header.HeaderWriterFilter@9f2376f, org.springframework.web.filter.CorsFilter@4a105556, org.springframework.security.web.authentication.logout.LogoutFilter@1308ef19, com.gongda.gongdacircle.security.JwtAuthenticationFilter@52bba91a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b09d1c3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18811c42, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3a72e2e8, org.springframework.security.web.session.SessionManagementFilter@37cf91d8, org.springframework.security.web.access.ExceptionTranslationFilter@56cd5d76, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a4ff5ed]
+2025-06-18 20:46:15.483 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-06-18 20:46:15.536 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-06-18 20:46:15.548 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Started GongdaCircleApplication in 3.737 seconds (JVM running for 4.634)
+2025-06-18 20:46:16.299 [RMI TCP Connection(1)-192.168.2.1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-18 20:46:16.300 [RMI TCP Connection(1)-192.168.2.1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-18 20:46:16.301 [RMI TCP Connection(1)-192.168.2.1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-18 20:46:40.959 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /user/login
+2025-06-18 20:46:40.964 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:40.992 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:41.004 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /user/login
+2025-06-18 20:46:41.004 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:41.007 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-06-18 20:46:41.016 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /user/login] with attributes [permitAll]
+2025-06-18 20:46:41.018 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /user/login
+2025-06-18 20:46:41.681 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:42.018 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:46:42.018 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:42.019 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:42.022 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:46:42.022 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:42.047 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:46:42.049 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:46:42.049 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:46:42.205 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:54.743 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 20:46:54.745 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:54.746 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:54.749 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 20:46:54.750 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:54.757 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:46:54.758 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 20:46:54.758 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 20:46:54.782 [http-nio-8080-exec-3] DEBUG com.gongda.gongdacircle.controller.PostController - ‰ªéSecurityContextËé∑ÂèñÁî®Êà∑ID: 1934979386386247681
+2025-06-18 20:46:54.783 [http-nio-8080-exec-3] INFO  com.gongda.gongdacircle.controller.PostController - Áî®Êà∑ 1934979386386247681 Ê≠£Âú®ÂèëÂ∏ÉÂ∏ñÂ≠ê
+2025-06-18 20:46:54.846 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:58.484 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:46:58.484 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:58.486 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:46:58.491 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:46:58.493 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:46:58.498 [http-nio-8080-exec-9] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:46:58.499 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:46:58.499 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:46:58.550 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:48:22.242 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:48:22.243 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:48:22.243 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:48:22.248 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:48:22.248 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:48:22.257 [http-nio-8080-exec-1] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:48:22.257 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:48:22.258 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:48:22.329 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:54:56.778 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:54:56.779 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:54:56.780 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:54:56.787 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:54:56.787 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:54:56.796 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:54:56.797 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:54:56.797 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:54:56.838 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:55:29.875 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:55:29.876 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:55:29.877 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:55:29.881 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:55:29.882 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:55:29.886 [http-nio-8080-exec-3] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:55:29.887 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:55:29.887 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:55:29.923 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:56:56.189 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:56:56.190 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:56:56.190 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:56:56.194 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:56:56.194 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:56:56.198 [http-nio-8080-exec-5] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:56:56.199 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:56:56.199 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:56:56.231 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:57:00.607 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:57:00.608 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:57:00.618 [http-nio-8080-exec-10] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:57:00.618 [http-nio-8080-exec-10] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:57:00.618 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:57:00.648 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:57:36.815 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/publish
+2025-06-18 20:57:36.816 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:57:36.816 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:57:36.818 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /post/publish
+2025-06-18 20:57:36.818 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:57:36.822 [http-nio-8080-exec-4] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:57:36.822 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [POST /post/publish] with attributes [permitAll]
+2025-06-18 20:57:36.822 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured POST /post/publish
+2025-06-18 20:57:36.826 [http-nio-8080-exec-4] DEBUG com.gongda.gongdacircle.controller.PostController - ‰ªéSecurityContextËé∑ÂèñÁî®Êà∑ID: 1934979386386247681
+2025-06-18 20:57:36.826 [http-nio-8080-exec-4] INFO  com.gongda.gongdacircle.controller.PostController - Áî®Êà∑ 1934979386386247681 Ê≠£Âú®ÂèëÂ∏ÉÂ∏ñÂ≠ê
+2025-06-18 20:57:36.834 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:57:38.571 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing OPTIONS /post/list?page=1&size=10
+2025-06-18 20:57:38.571 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:57:38.572 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:57:38.577 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /post/list?page=1&size=10
+2025-06-18 20:57:38.578 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-06-18 20:57:38.582 [http-nio-8080-exec-8] DEBUG c.g.gongdacircle.security.JwtAuthenticationFilter - JWT authentication successful for user: jyc
+2025-06-18 20:57:38.583 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /post/list?page=1&size=10] with attributes [permitAll]
+2025-06-18 20:57:38.583 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /post/list?page=1&size=10
+2025-06-18 20:57:38.604 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-06-18 20:58:02.547 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2025-06-18 20:58:02.554 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2025-06-18 23:43:43.624 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - Starting GongdaCircleApplication using Java 17.0.9 on orange with PID 10652 (D:\1—ßœ∞\¥Û»˝œ¬\»Ìº˛π§≥Ã\GongdaCircle\target\classes started by 86132 in D:\1—ßœ∞\¥Û»˝œ¬\»Ìº˛π§≥Ã\GongdaCircle)
+2025-06-18 23:43:43.628 [main] DEBUG com.gongda.gongdacircle.GongdaCircleApplication - Running with Spring Boot v2.7.18, Spring v5.3.31
+2025-06-18 23:43:43.628 [main] INFO  com.gongda.gongdacircle.GongdaCircleApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-18 23:43:44.287 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-18 23:43:44.289 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-18 23:43:44.313 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-06-18 23:43:44.894 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-06-18 23:43:44.904 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-18 23:43:44.904 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-06-18 23:43:45.008 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-06-18 23:43:45.008 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1336 ms
+2025-06-18 23:43:45.083 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2025-06-18 23:43:45.591 [main] ERROR com.alibaba.druid.pool.DruidDataSource - init datasource error, url: jdbc:mysql://localhost:3306/gongda_circle
+java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_connect(FilterEventAdapter.java:33)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1703)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1786)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:925)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1930)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1872)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1492)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1616)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.resolveStream(DefaultListableBeanFactory.java:2119)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.orderedStream(DefaultListableBeanFactory.java:2113)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.addBinders(MeterRegistryConfigurer.java:87)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.configure(MeterRegistryConfigurer.java:68)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryPostProcessor.postProcessAfterInitialization(MeterRegistryPostProcessor.java:64)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:204)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:98)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4904)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:794)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:248)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:489)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:481)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:585)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.gongda.gongdacircle.GongdaCircleApplication.main(GongdaCircleApplication.java:18)
+2025-06-18 23:43:45.609 [main] ERROR com.alibaba.druid.pool.DruidDataSource - {dataSource-1} init error
+java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_connect(FilterEventAdapter.java:33)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1703)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1786)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:925)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1930)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1872)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1492)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1616)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.resolveStream(DefaultListableBeanFactory.java:2119)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.orderedStream(DefaultListableBeanFactory.java:2113)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.addBinders(MeterRegistryConfigurer.java:87)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.configure(MeterRegistryConfigurer.java:68)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryPostProcessor.postProcessAfterInitialization(MeterRegistryPostProcessor.java:64)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:204)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:98)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4904)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:794)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:248)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:489)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:481)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:585)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.gongda.gongdacircle.GongdaCircleApplication.main(GongdaCircleApplication.java:18)
+2025-06-18 23:43:45.636 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2025-06-18 23:43:45.638 [main] ERROR o.s.boot.web.embedded.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'webMvcMetricsFilter' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/web/servlet/WebMvcMetricsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'webMvcMetricsFilter' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'simpleMeterRegistry' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimpleMetricsExportAutoConfiguration.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourcePoolMetadataMeterBinder' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourcePoolMetadataMeterBinder' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+2025-06-18 23:43:45.653 [Druid-ConnectionPool-Create-1231493271] ERROR com.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/gongda_circle, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_connect(FilterEventAdapter.java:33)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1703)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1786)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2910)
+2025-06-18 23:43:45.667 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-18 23:43:45.673 [Druid-ConnectionPool-Create-1231493271] ERROR com.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/gongda_circle, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_connect(FilterEventAdapter.java:33)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1703)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1786)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2910)
+2025-06-18 23:43:45.673 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [api] appears to have started a thread named [Druid-ConnectionPool-Create-1231493271] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.9/sun.util.calendar.ZoneInfo.getTransitionIndex(ZoneInfo.java:322)
+ java.base@17.0.9/sun.util.calendar.ZoneInfo.getOffsets(ZoneInfo.java:251)
+ java.base@17.0.9/sun.util.calendar.ZoneInfo.getOffsets(ZoneInfo.java:228)
+ java.base@17.0.9/java.util.GregorianCalendar.computeFields(GregorianCalendar.java:2301)
+ java.base@17.0.9/java.util.GregorianCalendar.computeFields(GregorianCalendar.java:2273)
+ java.base@17.0.9/java.util.Calendar.setTimeInMillis(Calendar.java:1827)
+ java.base@17.0.9/java.util.Calendar.setTime(Calendar.java:1793)
+ java.base@17.0.9/java.text.SimpleDateFormat.format(SimpleDateFormat.java:978)
+ java.base@17.0.9/java.text.SimpleDateFormat.format(SimpleDateFormat.java:971)
+ java.base@17.0.9/java.text.DateFormat.format(DateFormat.java:378)
+ app//ch.qos.logback.core.util.CachingDateFormatter.format(CachingDateFormatter.java:48)
+ app//ch.qos.logback.classic.pattern.DateConverter.convert(DateConverter.java:61)
+ app//ch.qos.logback.classic.pattern.DateConverter.convert(DateConverter.java:23)
+ app//ch.qos.logback.core.pattern.FormattingConverter.write(FormattingConverter.java:36)
+ app//ch.qos.logback.core.pattern.PatternLayoutBase.writeLoopOnConverters(PatternLayoutBase.java:115)
+ app//ch.qos.logback.classic.PatternLayout.doLayout(PatternLayout.java:165)
+ app//ch.qos.logback.classic.PatternLayout.doLayout(PatternLayout.java:39)
+ app//ch.qos.logback.core.encoder.LayoutWrappingEncoder.encode(LayoutWrappingEncoder.java:116)
+ app//ch.qos.logback.core.OutputStreamAppender.subAppend(OutputStreamAppender.java:230)
+ app//ch.qos.logback.core.OutputStreamAppender.append(OutputStreamAppender.java:102)
+ app//ch.qos.logback.core.UnsynchronizedAppenderBase.doAppend(UnsynchronizedAppenderBase.java:84)
+ app//ch.qos.logback.core.spi.AppenderAttachableImpl.appendLoopOnAppenders(AppenderAttachableImpl.java:51)
+ app//ch.qos.logback.classic.Logger.appendLoopOnAppenders(Logger.java:270)
+ app//ch.qos.logback.classic.Logger.callAppenders(Logger.java:257)
+ app//ch.qos.logback.classic.Logger.buildLoggingEventAndAppend(Logger.java:421)
+ app//ch.qos.logback.classic.Logger.filterAndLog_0_Or3Plus(Logger.java:383)
+ app//ch.qos.logback.classic.Logger.log(Logger.java:765)
+ app//com.alibaba.druid.support.logging.SLF4JImpl.error(SLF4JImpl.java:55)
+ app//com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2912)
+2025-06-18 23:43:45.676 [Druid-ConnectionPool-Create-1231493271] INFO  com.alibaba.druid.pool.DruidAbstractDataSource - {dataSource-1} failContinuous is true
+2025-06-18 23:43:45.678 [main] WARN  org.apache.catalina.loader.WebappClassLoaderBase - The web application [api] appears to have started a thread named [Druid-ConnectionPool-Destroy-1231493271] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.9/java.lang.Thread.sleep(Native Method)
+ app//com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2984)
+2025-06-18 23:43:45.679 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2025-06-18 23:43:45.694 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-06-18 23:43:45.709 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:585)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.gongda.gongdacircle.GongdaCircleApplication.main(GongdaCircleApplication.java:18)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:481)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webMvcMetricsFilter' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/web/servlet/WebMvcMetricsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'webMvcMetricsFilter' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'simpleMeterRegistry' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimpleMetricsExportAutoConfiguration.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourcePoolMetadataMeterBinder' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourcePoolMetadataMeterBinder' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:801)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:213)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:204)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:98)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:262)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:236)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4904)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:794)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:248)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:921)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:489)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'simpleMeterRegistry' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimpleMetricsExportAutoConfiguration.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourcePoolMetadataMeterBinder' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourcePoolMetadataMeterBinder' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	... 53 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourcePoolMetadataMeterBinder' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourcePoolMetadataMeterBinder' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:801)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:536)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1616)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.resolveStream(DefaultListableBeanFactory.java:2119)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$DependencyObjectProvider.orderedStream(DefaultListableBeanFactory.java:2113)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.addBinders(MeterRegistryConfigurer.java:87)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryConfigurer.configure(MeterRegistryConfigurer.java:68)
+	at org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryPostProcessor.postProcessAfterInitialization(MeterRegistryPostProcessor.java:64)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 63 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [com/alibaba/druid/spring/boot/autoconfigure/DruidDataSourceAutoConfigure.class]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1492)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	... 85 common frames omitted
+Caused by: java.sql.SQLException: Access denied for user 'gongda_circle'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:118)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_connect(FilterEventAdapter.java:33)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.FilterAdapter.connection_connect(FilterAdapter.java:764)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:232)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:112)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1703)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1786)
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:925)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1930)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1872)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 99 common frames omitted

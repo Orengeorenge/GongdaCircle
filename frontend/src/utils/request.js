@@ -4,7 +4,8 @@ import { getToken, clearAuth } from './auth'
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  // 使用相对路径，让请求通过Vite的代理转发
+  baseURL: '/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'

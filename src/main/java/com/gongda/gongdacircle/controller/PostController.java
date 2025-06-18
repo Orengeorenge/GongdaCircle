@@ -31,10 +31,23 @@ public class PostController {
     @PostMapping("/publish")
     public Result<Boolean> publishPost(@Validated @RequestBody PostDTO postDTO) {
         try {
+            // 获取当前登录用户ID
             Long userId = SecurityUtil.getCurrentUserId();
+            
+            // 如果SecurityUtil无法获取用户ID，尝试从请求参数中获取
+            if (userId == null && postDTO.getUserId() != null) {
+                userId = postDTO.getUserId();
+                log.info("从请求参数获取用户ID: {}", userId);
+            }
+            
+            // 如果仍然无法获取用户ID，返回未授权错误
             if (userId == null) {
+                log.warn("发布帖子失败：用户未登录或未提供用户ID");
                 return Result.error(401, "请先登录");
             }
+            
+            // 记录用户ID，方便调试
+            log.info("用户 {} 正在发布帖子", userId);
             
             boolean result = postService.publishPost(postDTO, userId);
             if (result) {

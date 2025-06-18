@@ -125,8 +125,8 @@ const changePassword = async () => {
           console.log('密码修改响应:', response)
           
           if (response.code === 200) {
-            ElMessage.success('密码修改成功')
-            resetPasswordForm()
+        ElMessage.success('密码修改成功')
+        resetPasswordForm()
           } else {
             // 显示后端返回的错误信息
             ElMessage.error(response.message || '密码修改失败')
