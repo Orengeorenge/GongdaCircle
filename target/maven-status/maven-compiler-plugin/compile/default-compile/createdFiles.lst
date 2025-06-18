@@ -37,6 +37,7 @@ com\gongda\gongdacircle\service\UserService.class
 com\gongda\gongdacircle\common\BaseEntity.class
 com\gongda\gongdacircle\vo\LoginVO.class
 com\gongda\gongdacircle\controller\CommentController.class
+com\gongda\gongdacircle\dto\PasswordChangeDTO.class
 com\gongda\gongdacircle\entity\User.class
 com\gongda\gongdacircle\enums\FriendStatus.class
 com\gongda\gongdacircle\entity\PostCollect.class

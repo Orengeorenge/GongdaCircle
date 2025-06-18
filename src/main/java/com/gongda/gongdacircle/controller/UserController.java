@@ -3,7 +3,9 @@ package com.gongda.gongdacircle.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gongda.gongdacircle.common.Result;
 import com.gongda.gongdacircle.dto.LoginDTO;
+import com.gongda.gongdacircle.dto.PasswordChangeDTO;
 import com.gongda.gongdacircle.dto.UserDTO;
+import com.gongda.gongdacircle.dto.UserUpdateDTO;
 import com.gongda.gongdacircle.service.UserService;
 import com.gongda.gongdacircle.vo.LoginVO;
 import com.gongda.gongdacircle.vo.UserVO;
@@ -61,10 +63,10 @@ public class UserController {
     /**
      * 获取用户信息
      */
-    @GetMapping("/{id}")
-    public Result<UserVO> getUserById(@PathVariable Long id) {
+    @GetMapping("/{username}")
+    public Result<UserVO> getUserByUsername(@PathVariable String username) {
         try {
-            UserVO userVO = userService.getUserById(id);
+            UserVO userVO = userService.getUserByUsername(username);
             if (userVO != null) {
                 return Result.success(userVO);
             } else {
@@ -77,19 +79,49 @@ public class UserController {
     }
     
     /**
-     * 更新用户信息
+     * 更新用户信息（旧接口，保留向后兼容性）
      */
-    @PutMapping("/{id}")
-    public Result<Boolean> updateUser(@PathVariable Long id, @Validated @RequestBody UserDTO userDTO) {
+    @PutMapping("/{username}")
+    public Result<UserVO> updateUser(@PathVariable String username, @Validated @RequestBody UserDTO userDTO) {
         try {
-            boolean result = userService.updateUser(id, userDTO);
+            boolean result = userService.updateUserByUsername(username, userDTO);
             if (result) {
-                return Result.success("更新成功");
+                // 获取并返回更新后的用户信息
+                UserVO updatedUser = userService.getUserByUsername(username);
+                if (updatedUser != null) {
+                    return Result.success("更新成功", updatedUser);
+                } else {
+                    return Result.error("更新成功但获取最新信息失败");
+                }
             } else {
                 return Result.error("更新失败");
             }
         } catch (Exception e) {
             log.error("更新用户信息异常：", e);
+            return Result.error(e.getMessage());
+        }
+    }
+    
+    /**
+     * 更新用户个人资料（新接口，不需要密码字段）
+     */
+    @PutMapping("/{username}/profile")
+    public Result<UserVO> updateUserProfile(@PathVariable String username, @Validated @RequestBody UserUpdateDTO updateDTO) {
+        try {
+            boolean result = userService.updateUserProfileByUsername(username, updateDTO);
+            if (result) {
+                // 获取并返回更新后的用户信息
+                UserVO updatedUser = userService.getUserByUsername(username);
+                if (updatedUser != null) {
+                    return Result.success("更新成功", updatedUser);
+                } else {
+                    return Result.error("更新成功但获取最新信息失败");
+                }
+            } else {
+                return Result.error("更新失败");
+            }
+        } catch (Exception e) {
+            log.error("更新用户个人资料异常：", e);
             return Result.error(e.getMessage());
         }
     }
@@ -114,10 +146,10 @@ public class UserController {
     /**
      * 更新用户状态
      */
-    @PutMapping("/{id}/status")
-    public Result<Boolean> updateUserStatus(@PathVariable Long id, @RequestParam Integer status) {
+    @PutMapping("/{username}/status")
+    public Result<Boolean> updateUserStatus(@PathVariable String username, @RequestParam Integer status) {
         try {
-            boolean result = userService.updateUserStatus(id, status);
+            boolean result = userService.updateUserStatusByUsername(username, status);
             if (result) {
                 return Result.success("状态更新成功");
             } else {
@@ -168,6 +200,24 @@ public class UserController {
         } catch (Exception e) {
             log.error("检查手机号异常：", e);
             return Result.error("检查手机号失败");
+        }
+    }
+    
+    /**
+     * 修改密码
+     */
+    @PutMapping("/{username}/password")
+    public Result<Boolean> changePassword(@PathVariable String username, @Validated @RequestBody PasswordChangeDTO passwordChangeDTO) {
+        try {
+            boolean result = userService.changePassword(username, passwordChangeDTO.getOldPassword(), passwordChangeDTO.getNewPassword());
+            if (result) {
+                return Result.success("密码修改成功");
+            } else {
+                return Result.error("密码修改失败");
+            }
+        } catch (Exception e) {
+            log.error("修改密码异常：", e);
+            return Result.error(e.getMessage());
         }
     }
 }

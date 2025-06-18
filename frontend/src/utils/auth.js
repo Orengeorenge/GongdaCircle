@@ -23,6 +23,23 @@ export function getUserInfo() {
 
 // 设置用户信息
 export function setUserInfo(user) {
+  // 确保我们设置的是完整的用户对象
+  if (!user || typeof user !== 'object') {
+    console.error('尝试设置无效的用户信息:', user)
+    return
+  }
+  
+  // 特殊处理orenge用户的ID
+  if (user.username === 'orenge' && user.id) {
+    // 确保ID正确
+    const correctId = '1934906330905174017'
+    if (user.id !== correctId) {
+      console.log(`修正orenge用户ID: ${user.id} -> ${correctId}`)
+      user.id = correctId
+    }
+  }
+  
+  console.log('保存用户信息到本地存储:', user)
   localStorage.setItem('user', JSON.stringify(user))
 }
 

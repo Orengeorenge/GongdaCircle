@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.gongda.gongdacircle.dto.UserDTO;
+import com.gongda.gongdacircle.dto.UserUpdateDTO;
 import com.gongda.gongdacircle.entity.User;
 import com.gongda.gongdacircle.mapper.UserMapper;
 import com.gongda.gongdacircle.service.UserService;
@@ -84,8 +85,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setLastLoginTime(LocalDateTime.now().toString());
         updateById(user);
         
-        // 生成JWT token
-        String token = jwtUtil.generateToken(user.getId(), user.getUsername());
+        // 生成JWT token - 使用用户名而不是ID
+        String token = jwtUtil.generateToken(user.getUsername());
         
         // 构造用户信息
         UserVO userVO = new UserVO();
@@ -99,6 +100,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public UserVO getUserById(Long id) {
         User user = getById(id);
+        if (user == null) {
+            return null;
+        }
+        
+        UserVO userVO = new UserVO();
+        BeanUtil.copyProperties(user, userVO);
+        return sanitizeUserVO(userVO);
+    }
+    
+    @Override
+    public UserVO getUserByUsername(String username) {
+        User user = baseMapper.selectByUsername(username);
         if (user == null) {
             return null;
         }
@@ -130,6 +143,58 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         
         // 更新用户信息（不更新密码、ID等敏感字段）
         BeanUtil.copyProperties(userDTO, user, "id", "password", "createTime", "createBy");
+        
+        return updateById(user);
+    }
+    
+    @Override
+    public boolean updateUserByUsername(String username, UserDTO userDTO) {
+        User user = baseMapper.selectByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        
+        // 检查重复性（排除自己）
+        if (!username.equals(userDTO.getUsername()) && existsByUsername(userDTO.getUsername())) {
+            throw new RuntimeException("用户名已存在");
+        }
+        if (StrUtil.isNotBlank(userDTO.getEmail()) && !userDTO.getEmail().equals(user.getEmail()) 
+            && existsByEmail(userDTO.getEmail())) {
+            throw new RuntimeException("邮箱已存在");
+        }
+        if (StrUtil.isNotBlank(userDTO.getPhone()) && !userDTO.getPhone().equals(user.getPhone()) 
+            && existsByPhone(userDTO.getPhone())) {
+            throw new RuntimeException("手机号已存在");
+        }
+        
+        // 更新用户信息（不更新密码、ID等敏感字段）
+        BeanUtil.copyProperties(userDTO, user, "id", "password", "createTime", "createBy");
+        
+        return updateById(user);
+    }
+    
+    @Override
+    public boolean updateUserProfileByUsername(String username, UserUpdateDTO updateDTO) {
+        User user = baseMapper.selectByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        
+        // 检查重复性（排除自己）
+        if (!username.equals(updateDTO.getUsername()) && existsByUsername(updateDTO.getUsername())) {
+            throw new RuntimeException("用户名已存在");
+        }
+        if (StrUtil.isNotBlank(updateDTO.getEmail()) && !updateDTO.getEmail().equals(user.getEmail()) 
+            && existsByEmail(updateDTO.getEmail())) {
+            throw new RuntimeException("邮箱已存在");
+        }
+        if (StrUtil.isNotBlank(updateDTO.getPhone()) && !updateDTO.getPhone().equals(user.getPhone()) 
+            && existsByPhone(updateDTO.getPhone())) {
+            throw new RuntimeException("手机号已存在");
+        }
+        
+        // 更新用户信息（不更新密码、ID等敏感字段）
+        BeanUtil.copyProperties(updateDTO, user, "id", "password", "createTime", "createBy");
         
         return updateById(user);
     }
@@ -178,6 +243,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
     
     @Override
+    public boolean updateUserStatusByUsername(String username, Integer status) {
+        User user = baseMapper.selectByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        
+        user.setStatus(status);
+        return updateById(user);
+    }
+    
+    @Override
     public boolean existsByUsername(String username) {
         return baseMapper.selectByUsername(username) != null;
     }
@@ -190,6 +266,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean existsByPhone(String phone) {
         return baseMapper.selectByPhone(phone) != null;
+    }
+    
+    @Override
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        // 根据用户名查询用户
+        User user = baseMapper.selectByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        
+        // 验证旧密码
+        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+            throw new RuntimeException("旧密码错误");
+        }
+        
+        // 检查新密码是否与旧密码相同
+        if (passwordEncoder.matches(newPassword, user.getPassword())) {
+            throw new RuntimeException("新密码不能与旧密码相同");
+        }
+        
+        // 更新密码
+        user.setPassword(passwordEncoder.encode(newPassword));
+        return updateById(user);
     }
     
     /**

@@ -36,17 +36,15 @@ public class JwtUtil {
     /**
      * 生成 JWT Token
      * 
-     * @param userId 用户ID
      * @param username 用户名
      * @return JWT Token
      */
-    public String generateToken(Long userId, String username) {
+    public String generateToken(String username) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
         
         return Jwts.builder()
-                .setSubject(userId.toString())
-                .claim("username", username)
+                .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -54,26 +52,37 @@ public class JwtUtil {
     }
     
     /**
-     * 从 Token 中获取用户ID
+     * 为兼容旧方法保留，但内部使用用户名作为subject
      * 
-     * @param token JWT Token
-     * @return 用户ID
+     * @param userId 用户ID（已不再使用）
+     * @param username 用户名
+     * @return JWT Token
      */
-    public Long getUserIdFromToken(String token) {
-        Claims claims = getClaimsFromToken(token);
-        return Long.valueOf(claims.getSubject());
+    public String generateToken(Long userId, String username) {
+        return generateToken(username);
     }
     
     /**
-     * 从请求中获取用户ID
+     * 从 Token 中获取用户名
+     * 
+     * @param token JWT Token
+     * @return 用户名
+     */
+    public String getUsernameFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getSubject();
+    }
+    
+    /**
+     * 从请求中获取用户名
      * 
      * @param request HTTP请求
-     * @return 用户ID
+     * @return 用户名
      */
-    public static Long getUserIdFromRequest(HttpServletRequest request) {
+    public static String getUsernameFromRequest(HttpServletRequest request) {
         String token = getTokenFromRequest(request);
         if (StringUtils.hasText(token) && instance != null) {
-            return instance.getUserIdFromToken(token);
+            return instance.getUsernameFromToken(token);
         }
         throw new RuntimeException("无法获取用户信息");
     }
@@ -90,17 +99,6 @@ public class JwtUtil {
             return bearerToken.substring(7);
         }
         return null;
-    }
-    
-    /**
-     * 从 Token 中获取用户名
-     * 
-     * @param token JWT Token
-     * @return 用户名
-     */
-    public String getUsernameFromToken(String token) {
-        Claims claims = getClaimsFromToken(token);
-        return claims.get("username", String.class);
     }
     
     /**
@@ -173,4 +171,24 @@ public class JwtUtil {
         }
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
-} 
+    
+    /**
+     * 为保持向后兼容，从token获取用户ID的方法仍然保留
+     * 但不推荐使用，将返回null
+     */
+    @Deprecated
+    public Long getUserIdFromToken(String token) {
+        log.warn("调用已废弃的getUserIdFromToken方法，请改用getUsernameFromToken");
+        return null;
+    }
+    
+    /**
+     * 为保持向后兼容，从请求获取用户ID的方法仍然保留
+     * 但不推荐使用，将抛出异常
+     */
+    @Deprecated
+    public static Long getUserIdFromRequest(HttpServletRequest request) {
+        log.error("调用已废弃的getUserIdFromRequest方法，请改用getUsernameFromRequest");
+        throw new RuntimeException("此方法已废弃，请使用getUsernameFromRequest");
+    }
+}

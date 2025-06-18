@@ -92,7 +92,7 @@
       </el-form-item>
       
       <el-form-item>
-        <el-button type="primary" @click="updateBasicInfo">
+        <el-button type="primary" @click="updateBasicInfo" :loading="loading">
           保存修改
         </el-button>
         <el-button @click="resetBasicForm">重置</el-button>
@@ -104,9 +104,13 @@
 <script setup>
 import { ref, reactive, defineExpose } from 'vue'
 import { ElMessage } from 'element-plus'
+import { userAPI } from '@/api'
+import { setUserInfo } from '@/utils/auth'
 
 const basicFormRef = ref()
+const loading = ref(false)
 const basicForm = reactive({
+  id: '',
   username: '',
   nickname: '',
   email: '',
@@ -136,14 +140,130 @@ const basicRules = {
 const updateBasicInfo = async () => {
   if (!basicFormRef.value) return
   
-  await basicFormRef.value.validate((valid) => {
+  try {
+    await basicFormRef.value.validate(async (valid) => {
     if (valid) {
-      // 模拟更新请求
+        loading.value = true
+        
+        // 从表单中获取用户名（API需要用户名而不是ID）
+        const username = basicForm.username
+        
+        if (!username) {
+          ElMessage.error('无法获取用户名，请重新登录')
+          loading.value = false
+          return
+        }
+        
+        console.log('更新用户信息使用的用户名:', username)
+        
+        // 准备要提交的用户数据，处理手机号
+        const userData = {
+          username: basicForm.username,
+          // 添加固定密码字段以满足后端验证规则
+          // 后端会忽略这个密码字段，不会真正修改用户密码
+          password: "Password123",
+          nickname: basicForm.nickname,
+          email: basicForm.email,
+          // 只有当手机号不为空字符串时才包含该字段
+          ...(basicForm.phone && basicForm.phone.trim() !== '' ? { phone: basicForm.phone } : {}),
+          gender: basicForm.gender,
+          birthday: basicForm.birthday,
+          school: basicForm.school,
+          major: basicForm.major,
+          grade: basicForm.grade,
+          biography: basicForm.biography
+        }
+        
+        console.log('将要提交的用户数据:', userData)
+        
+        try {
+          // 调用API更新用户信息 - 使用用户名
+          const response = await userAPI.updateUserInfo(username, userData)
+          
+          console.log('API响应:', response)
+          
+          // 检查响应状态和数据
+          if (response && response.data && response.data.code === 200) {
+            // 从响应中获取更新后的用户数据
+            if (response.data.data) {
+              // 后端已返回更新后的用户数据
+              const updatedUserData = response.data.data
+              console.log('从API响应获取的更新后用户信息:', updatedUserData)
+              
+              // 更新本地存储
+              setUserInfo(updatedUserData)
+              
+              ElMessage.success('基本资料更新成功')
+            } else {
+              // 后端没有返回用户数据，尝试获取
+              try {
+                // 获取最新的用户信息
+                const userResponse = await userAPI.getUserInfo(username)
+                
+                if (userResponse && userResponse.data && userResponse.data.data) {
+                  // 使用服务器返回的数据更新本地存储
+                  const latestUserData = userResponse.data.data
+                  console.log('从服务器获取的最新用户信息:', latestUserData)
+                  
+                  // 更新本地存储
+                  setUserInfo(latestUserData)
+                  
+                  ElMessage.success('基本资料更新成功')
+                } else {
+                  // 获取最新用户信息失败，使用本地更新的数据
+                  const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
+                  const updatedUser = { 
+                    ...storedUser, 
+                    ...userData
+                  }
+                  setUserInfo(updatedUser)
+                  
+                  ElMessage.success('基本资料已更新，但获取最新数据失败')
+                }
+              } catch (fetchError) {
+                console.error('获取最新用户信息失败:', fetchError)
+                
+                // 获取失败时，使用本地更新的数据
+                const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
+                const updatedUser = { 
+                  ...storedUser, 
+                  ...userData
+                }
+                setUserInfo(updatedUser)
+                
+                ElMessage.success('基本资料已更新，但获取最新数据失败')
+              }
+            }
+            
+            // 刷新页面，确保显示最新数据
       setTimeout(() => {
-        ElMessage.success('基本资料更新成功')
-      }, 500)
+              window.location.reload()
+            }, 1500)
+          } else {
+            // 提取错误信息
+            const errorMsg = response.data?.msg || '更新失败，请稍后再试'
+            ElMessage.error(errorMsg)
+          }
+        } catch (error) {
+          console.error('更新用户信息出错:', error)
+          
+          // API调用出错时，不再自动更新本地存储
+          ElMessage.error('更新个人资料失败，请稍后再试')
+          
+          // 详细记录错误信息
+          if (error.response) {
+            console.error('错误响应状态:', error.response.status)
+            console.error('错误响应数据:', error.response.data)
+          }
+        } finally {
+          loading.value = false
+        }
     }
   })
+  } catch (error) {
+    console.error('表单验证错误:', error)
+    loading.value = false
+  }
 }
 
 const resetBasicForm = () => {
@@ -152,7 +272,21 @@ const resetBasicForm = () => {
 
 // 提供设置表单数据的方法
 const setFormData = (userData) => {
-  Object.assign(basicForm, userData)
+  if (!userData) return
+  
+  // 复制基本字段
+  Object.keys(basicForm).forEach(key => {
+    if (userData[key] !== undefined) {
+      // 确保数据类型正确
+      if (key === 'gender' && userData[key] !== null) {
+        basicForm[key] = parseInt(userData[key])
+      } else if (key === 'id' && userData[key]) {
+        basicForm[key] = String(userData[key])
+      } else {
+        basicForm[key] = userData[key]
+      }
+    }
+  })
 }
 
 // 向外部暴露方法

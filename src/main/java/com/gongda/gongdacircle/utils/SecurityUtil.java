@@ -13,15 +13,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SecurityUtil {
     
     /**
-     * 获取当前登录用户ID
+     * 获取当前登录用户名
+     * 
+     * @return 用户名，如果未登录返回null
+     */
+    public static String getCurrentUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof String) {
+            return (String) authentication.getPrincipal();
+        }
+        return null;
+    }
+    
+    /**
+     * 获取当前登录用户ID - 已废弃，保留用于兼容
      * 
      * @return 用户ID，如果未登录返回null
+     * @deprecated 请使用getCurrentUsername()方法
      */
+    @Deprecated
     public static Long getCurrentUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof Long) {
-            return (Long) authentication.getPrincipal();
-        }
+        // 不再返回用户ID，但保留方法用于兼容
         return null;
     }
     

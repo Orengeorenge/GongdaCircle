@@ -41,12 +41,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         
         if (StringUtils.hasText(token) && jwtUtil.validateToken(token)) {
             try {
-                Long userId = jwtUtil.getUserIdFromToken(token);
                 String username = jwtUtil.getUsernameFromToken(token);
                 
-                // 创建认证对象
+                // 创建认证对象 - 使用用户名而不是用户ID
                 UsernamePasswordAuthenticationToken authentication = 
-                    new UsernamePasswordAuthenticationToken(userId, null, new ArrayList<>());
+                    new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
                 
                 // 设置认证信息到安全上下文
                 SecurityContextHolder.getContext().setAuthentication(authentication);

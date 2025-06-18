@@ -7,29 +7,26 @@ export const authAPI = {
     return request.post('/user/login', loginData)
   },
   
-  // 用户注册
+  // 用户注册 - 处理空字段以避免唯一约束问题
   register: (registerData) => {
-    return request.post('/user/register', registerData)
+    // 复制数据，确保不修改原始对象
+    const processedData = { ...registerData }
+    
+    // 如果手机号为空或未定义，设置为null而非空字符串，避免唯一约束冲突
+    if (!processedData.phone || processedData.phone.trim() === '') {
+      // 删除phone字段，而不是设置为空字符串
+      delete processedData.phone
+    }
+    
+    // 记录处理后的数据
+    console.log('处理后的注册数据:', processedData)
+    
+    return request.post('/user/register', processedData)
   },
   
   // 获取当前用户信息
   getCurrentUser: () => {
     return request.get('/auth/me')
-  },
-  
-  // 更新用户信息
-  updateUserInfo: (userId, userData) => {
-    return request.put(`/user/${userId}`, userData)
-  },
-  
-  // 修改密码
-  changePassword: (userId, passwordData) => {
-    return request.put(`/user/${userId}/password`, passwordData)
-  },
-  
-  // 更新头像
-  updateAvatar: (userId, avatarData) => {
-    return request.put(`/user/${userId}/avatar`, avatarData)
   },
   
   // 刷新token
@@ -51,6 +48,22 @@ export const authAPI = {
   checkEmail: (email) => {
     return request.get(`/user/check/email?email=${encodeURIComponent(email)}`)
   }
+}
+
+/**
+ * 修改密码
+ * @param {string} username - 用户名
+ * @param {Object} data - 密码数据
+ * @param {string} data.oldPassword - 旧密码
+ * @param {string} data.newPassword - 新密码
+ * @returns {Promise}
+ */
+export function changePassword(username, data) {
+  return request({
+    url: `/user/${username}/password`,
+    method: 'put',
+    data
+  })
 }
 
 export default authAPI 

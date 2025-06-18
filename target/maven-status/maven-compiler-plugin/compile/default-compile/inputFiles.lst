@@ -43,6 +43,7 @@ D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\util
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\service\impl\PostCollectServiceImpl.java
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\entity\PostCollect.java
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\vo\LoginVO.java
+D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\dto\UserUpdateDTO.java
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\mapper\FriendMapper.java
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\service\CommentService.java
 D:\1学习\大三下\软件工程\GongdaCircle\src\main\java\com\gongda\gongdacircle\service\impl\FriendServiceImpl.java

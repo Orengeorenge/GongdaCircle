@@ -205,16 +205,21 @@ const handleRegister = async () => {
       loading.value = true
       
       try {
-        // 调用注册API，传递完整的用户信息
-        const response = await authAPI.register({
+        // 构建注册数据，确保不传递空手机号
+        const registerData = {
           username: registerForm.username,
           password: registerForm.password,
           nickname: registerForm.nickname,
           email: registerForm.email,
           gender: 2, // 默认保密
-          school: '工业大学', // 可选默认值
-          phone: '' // 可选，传空字符串
-        })
+          school: '工业大学' // 可选默认值
+          // 不传递phone字段，让后端使用null值而不是空字符串
+        }
+        
+        console.log('注册数据:', registerData)
+        
+        // 调用注册API，传递完整的用户信息
+        const response = await authAPI.register(registerData)
         
         // 检查响应状态
         if (response.data.code === 200) {
@@ -228,8 +233,21 @@ const handleRegister = async () => {
       } catch (error) {
         // 处理网络错误或其他异常
         console.error('注册错误:', error)
-        const errorMessage = error.response?.data?.message || '注册失败，请检查网络连接'
-        ElMessage.error(errorMessage)
+        if (error.response && error.response.data && error.response.data.message) {
+          // 显示详细的错误信息
+          const errorMessage = error.response.data.message
+          if (errorMessage.includes('Duplicate entry') && errorMessage.includes('uk_phone')) {
+            ElMessage.error('手机号已被使用，请使用其他手机号')
+          } else if (errorMessage.includes('Duplicate entry') && errorMessage.includes('uk_email')) {
+            ElMessage.error('邮箱已被使用，请使用其他邮箱')
+          } else if (errorMessage.includes('Duplicate entry') && errorMessage.includes('uk_username')) {
+            ElMessage.error('用户名已被使用，请使用其他用户名')
+          } else {
+            ElMessage.error(errorMessage)
+          }
+        } else {
+          ElMessage.error('注册失败，请检查网络连接')
+        }
       } finally {
         loading.value = false
       }
